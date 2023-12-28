@@ -5,7 +5,13 @@
     "manifest_version": 3,
     "author": "Jake Stainthorpe | K2122623",
     "action":{
-        "default_popup": "index.html",
+        "default_popup": "popup.html",
         "default_title": "Cyber Security Tool"
-    }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["userEducationMenu.html"],
+            "extension_ids": ["*"]
+        }
+      ]
 }

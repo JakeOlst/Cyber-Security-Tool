@@ -1,0 +1,143 @@
+html
+{
+    font-family: Verdana, sans-serif;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+.popupMenu
+{
+    width:450px;
+    height:350px;
+    padding: 0;
+    margin: 0;
+}
+
+.popupTopMenu
+{
+    height: 80px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50px 250px 50px 50px;
+    column-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 25px;
+    background: #F5F5F5;
+}
+
+.popupTopMenu img
+{
+    width: 30px;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: center;
+    text-align: center;
+}
+
+.popupTopMenu h2
+{
+    text-align: center;
+    font-size: 22px;
+    height: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-block: 0;
+}
+
+.popupBottomMenu
+{
+    width: 450px;
+    height: 240px;
+    float: center;
+    align-items: center;
+}
+
+.popupBottomMenu button
+{
+    width: 350px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.educationTopMenu
+{
+    min-height: 60px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50px auto 50px;
+    column-gap: 10px;
+    padding: 2.5%;
+    background: #F5F5F5;
+}
+
+.educationTopMenu img
+{
+    max-width: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: center;
+}
+
+.educationTopMenu h2
+{
+    height: inherit;
+    text-align: center;
+    font-size: 2.2rem;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-block: 0;
+}
+
+.educationBottomMenu
+{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 47.5% 47.5%;
+    grid-template-rows: 45% 45%;
+    column-gap: 5%;
+    row-gap: 7.5%;
+    padding: 2.5%;
+    min-height: 500px;
+}
+
+.educationBottomMenuItem
+{
+    height: 100%;
+    width: 100%;
+}
+
+.educationBottomMenuItem button
+{
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 90%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.educationBottomMenuItem img
+{
+    width: 20%;
+    margin-top: 5%;
+    margin-bottom: 2.5%;
+}
+
+.educationBottomMenuItem p
+{
+    width: 100%;
+}
