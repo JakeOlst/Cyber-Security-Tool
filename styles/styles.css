@@ -9,6 +9,10 @@ body
     padding: 0;
 }
 
+/* 
+    CSS code for 'popup.html' web page.
+*/
+
 .popupMenu
 {
     width:450px;
@@ -69,6 +73,10 @@ body
     margin-bottom: 30px;
     font-size: 20px;
 }
+
+/* 
+    CSS code for 'userEducationMenu.html' web page.
+*/
 
 .educationTopMenu
 {
