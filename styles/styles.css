@@ -83,7 +83,7 @@ body
     min-height: 60px;
     display: grid;
     align-items: center;
-    grid-template-columns: 50px auto 50px;
+    grid-template-columns: 125px auto 125px;
     column-gap: 10px;
     padding: 2.5%;
     background: #F5F5F5;
@@ -107,6 +107,21 @@ body
     padding-top: 7px;
     padding-bottom: 7px;
     margin-block: 0;
+}
+
+.educationTopMenu p
+{
+    text-align: center;
+    font-size: 24px;
+    margin-block: 0;
+}
+
+.educationTopMenu button
+{
+    width: 100%;
+    height: 60%;
+    margin-top: 7.5%;
+    margin-bottom: 7.5%;
 }
 
 .educationBottomMenu
@@ -140,12 +155,85 @@ body
 
 .educationBottomMenuItem img
 {
-    width: 20%;
-    margin-top: 5%;
+    width: 17.5%;
+    margin-top: 2.5%;
     margin-bottom: 2.5%;
 }
 
 .educationBottomMenuItem p
 {
     width: 100%;
+    padding-bottom: 2.5%;
+}
+
+/* 
+    CSS code for 'template.html' web page.
+*/
+
+.articleMenu
+{
+    width: 100%;
+    display: grid;
+    min-height: 80vh;
+    align-items: center;
+    grid-template-rows: 60px auto;
+}
+
+.articleTopBar
+{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% 60px auto 20% 60px;
+}
+
+.title, .jumpTo
+{
+    height: 60px;
+    width: 100%;
+}
+
+.jumpTo
+{
+    background: #F5F5F5;
+}
+
+.articleTopBar h3,h4
+{
+    font-size: 22px;
+    text-align: center;
+    margin-block: 0;
+}
+
+.articleLogo img
+{
+    width: 35px;
+    padding: 11.5px;
+}
+
+.articleBottomBar
+{
+    height: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% 80%;
+}
+
+.navBar
+{
+    height: 100%;
+}
+
+.navBar ul
+{
+    background: #F5F5F5;
+    margin: 0;
+    height: 100%;
+}
+
+.navBar li
+{
+    font-size: 16px;
+    margin-bottom: 10px;
 }
