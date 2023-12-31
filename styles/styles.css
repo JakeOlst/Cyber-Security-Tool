@@ -13,16 +13,14 @@ body
     CSS code for 'popup.html' web page.
 */
 
-.popupMenu
-{
+.popupMenu {
     width:450px;
     height:350px;
     padding: 0;
     margin: 0;
 }
 
-.popupTopMenu
-{
+.popupTopMenu {
     height: 80px;
     display: grid;
     align-items: center;
@@ -34,20 +32,13 @@ body
     background: #F5F5F5;
 }
 
-.popupTopMenu img
-{
+.popupTopMenu img {
     width: 30px;
     height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    float: center;
-    text-align: center;
+    padding: 5px 10px;
 }
 
-.popupTopMenu h2
-{
+.popupTopMenu h2 {
     text-align: center;
     font-size: 22px;
     height: 30px;
@@ -56,21 +47,17 @@ body
     margin-block: 0;
 }
 
-.popupBottomMenu
-{
+.popupBottomMenu {
     width: 450px;
     height: 240px;
     float: center;
     align-items: center;
 }
 
-.popupBottomMenu button
-{
+.popupBottomMenu button {
     width: 350px;
     height: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 30px;
+    margin: 0 50px 30px 50px;
     font-size: 20px;
 }
 
@@ -92,11 +79,7 @@ body
 .educationTopMenu img
 {
     max-width: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    float: center;
+    padding: 10px 5px;
 }
 
 .educationTopMenu h2
@@ -104,8 +87,7 @@ body
     height: inherit;
     text-align: center;
     font-size: 2.2rem;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding: 7px auto;
     margin-block: 0;
 }
 
@@ -120,8 +102,7 @@ body
 {
     width: 100%;
     height: 60%;
-    margin-top: 7.5%;
-    margin-bottom: 7.5%;
+    margin: 7.5% auto;
 }
 
 .educationBottomMenu
@@ -144,20 +125,16 @@ body
 
 .educationBottomMenuItem button
 {
+    margin: 2.5% 10%;
     font-size: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
     width: 80%;
     height: 90%;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
 }
 
 .educationBottomMenuItem img
 {
     width: 17.5%;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
+    margin: 2.5% auto;
 }
 
 .educationBottomMenuItem p
