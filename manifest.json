@@ -4,7 +4,13 @@
     "description": "Cyber Security Tool",
     "manifest_version": 3,
     "author": "Jake Stainthorpe | K2122623",
-    "action":{
+
+    "permissions": [
+        "webNavigation",
+        "activeTab",
+        "storage"
+    ],
+    "action": {
         "default_popup": "popup.html",
         "default_title": "Cyber Security Tool"
     },
@@ -13,11 +19,14 @@
         "32": "images/logo32.png",
         "48": "images/logo48.png",
         "128": "images/logo128.png"
-      },
+    },
     "web_accessible_resources": [
         {
             "resources": ["userEducationMenu.html"],
             "extension_ids": ["*"]
         }
-      ]
+    ],
+    "background": {
+        "service_worker":"scripts/background.js"
+    }
 }
