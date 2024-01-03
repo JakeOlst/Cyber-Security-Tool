@@ -1,7 +1,10 @@
+const corsProxy = 'https://corsproxy.io/?';
+
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
 
-    queryGoogleWebRiskAPI(url);
+    //queryGoogleWebRiskAPI(url);
+    queryURLScanIOSubmit(url);
 });
 
 /* Query API 1 - Google Web Risk API */
@@ -27,20 +30,20 @@ function queryGoogleWebRiskAPI(url) {
 }
 
 /* Query API 2 - URL Scan IO */
-function queryURLScanIO(url) {
-    const apiEndpoint = 'https://urlscan.io/api/v1/search/?q=';
+function queryURLScanIOSubmit(url) {
+    const apiEndpoint = 'https://urlscan.io/api/v1/scan/';
     const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 
     const postData = {
-        url: encodeURIComponent(url),
+        url: url,
         visibility: 'public',
     }
 
-    fetch((apiEndpoint+encodedUrl), {
+    fetch((corsProxy + apiEndpoint), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'API-Key': apiKey;
+            'API-Key': apiKey,
         },
         body: JSON.stringify(postData),
     })
@@ -48,18 +51,49 @@ function queryURLScanIO(url) {
 
     .then(response => response.json())
     .then(data => {
-        console.log("Submission to Google Web Risk API Successful");
+        console.log("Submission to URLScan.IO Successful");
+        console.log('URLScan.IO Response:', data);
         if (data.uuid) {
-            console.log('Google Web Risk API Response:', data);
-            chrome.webNavigation.onBeforeNavigate.addListener(navToBlockPage, { url: [{ urlContains: "blocked.html" }] });
-        }
+            console.log('URLScan.IO UUID:', data.uuid);
+            // A timeout is added for 10 seconds, as per the documentation for the API. //
+            setTimeout(queryURLScanIOResult(data.uuid),10000);
         }
     })
     .catch(error => {
-        console.error('Error querying Google Web Risk API:', error);
+        console.error('Error querying URLScan.IO API:', error);
     });
 }
 
+function queryURLScanIOResult(uuid)
+{
+    const apiEndpoint = 'https://urlscan.io/api/v1/result/'+uuid+'/';
+    const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
+
+    fetch((corsProxy+apiEndpoint), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-Key': apiKey,
+        },
+    })
+
+    .then(response => response.json())
+    .then(data => {
+        console.log("Submission to URLScan.IO successful");
+        if (data.uuid) {
+            console.log('URLScan.IO Response:', data);
+            chrome.webNavigation.onBeforeNavigate.addListener(navToBlockPage, { url: [{ urlContains: "blocked.html" }] });
+        }
+        else {
+            throw new Error('UUID not received from URLScan.IO')
+        }
+    })
+    .catch(error => {
+        console.error('Error querying URLScan.IO API:', error);
+    });
+}
+
+/* Navigate the user to the 'Blocked' page. */
 function navToBlockPage(details) {
     const redirectURL = chrome.extension.getURL('blockedPage.html');
     chrome.webNavigation.onBeforeNavigate.removeListener(navToBlockPage);
