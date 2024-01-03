@@ -1,0 +1,40 @@
+{
+    "typesOfThreat": [
+        {
+            "threatCode": ["NEGATIVE_REPUTATION_SCORE"],
+            "threatName": "Negative Reputation Score",
+            "description": "This website has a negative / poor reputation score. This means that the website is likely to be untrustworthy."
+        },
+        {
+            "threatCode": ["PHISHING" , "WATERHOLING"],
+            "threatName": "Phishing",
+            "description": "This website is flagged for tricking individuals into revealing sensitive information, such as banking information."
+        },
+        {
+            "threatCode": ["MALWARE"],
+            "threatName": "Malware",
+            "description": "This website is flagged for containing malicious software, which can harm your computer and allow people to steal data and information."
+        },
+        {
+            "threatCode": ["SOCIAL_ENGINEERING"],
+            "threatName": "Social Engineering",
+            "description": "This website is flagged for potentially manipulating users into providing confidential information."
+        },
+        {
+            "threatCode": ["UNWANTED_SOFTWARE","POTENTIALLY_UNWANTED_SOFTWARE","POTENTIALLY_HARMFUL_APPLICATION"],
+            "threatName": "Potentially Unwanted/Harmful Software/Application",
+            "description": "This website is flagged for containing harmful and unwanted software, which can be misleading and deceptive."
+        },
+        {
+            "threatCode": ["SCAM","TECH_SUPPORT_SCAM","COUNTERFEIT"],
+            "threatName": "Scamming",
+            "description": "This website is flagged for scamming. A scammer might try to fool you into giving money or personal information. "
+        },
+        {
+            "threatCode": ["BRAND_IMPERSONATION"],
+            "threatName": "Impersonating Legitimate Brand",
+            "description": "This website is flagged for Brand Impersonation. This is when someone pretends to be a well-known or real company to trick users financially or with information."
+        },
+        
+    ]
+}
