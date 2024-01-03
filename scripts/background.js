@@ -66,31 +66,51 @@ function queryURLScanIOSubmit(url) {
 
 function queryURLScanIOResult(uuid)
 {
+    const maxRetries = 5;
+    let retries = 0;
     const apiEndpoint = 'https://urlscan.io/api/v1/result/'+uuid+'/';
     const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 
-    fetch((corsProxy+apiEndpoint), {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'API-Key': apiKey,
-        },
-    })
+    getResults(uuid);
 
-    .then(response => response.json())
-    .then(data => {
-        console.log("Submission to URLScan.IO successful");
-        if (data.uuid) {
-            console.log('URLScan.IO Response:', data);
-            chrome.webNavigation.onBeforeNavigate.addListener(navToBlockPage, { url: [{ urlContains: "blocked.html" }] });
-        }
-        else {
-            throw new Error('UUID not received from URLScan.IO')
-        }
-    })
-    .catch(error => {
-        console.error('Error querying URLScan.IO API:', error);
-    });
+    function getResults(uuid) {
+
+        fetch((corsProxy+apiEndpoint), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'API-Key': apiKey,
+            },
+        })
+
+        .then(response => response.json())
+        .then(data => {
+            console.log("Submission to URLScan.IO successful");
+            if (data.message == 'Submission successful') {
+                console.log('URLScan.IO Response:', data);
+                if (data.verdicts.urlscan.score > -50) {
+                    let categories = verdicts.urlscan.categories;
+                    chrome.webNavigation.onBeforeNavigate.addListener(navToBlockPage, { url: [{ urlContains: "blocked.html" }] });
+                }
+            }
+            else if (retries >= maxRetries)
+            {
+                throw new Error('Error querying URLScan.IO API: Max Retries attempted.');
+            }
+            else if ((data.message == 'Not Found') && (retries < maxRetries)) {
+                console.log('URLScan.IO Results Page not yet ready. Retrying in 2 seconds.')
+                retries++;
+                setTimeout(() => getResults(uuid), 2000)
+            }
+            else {
+                throw new Error('UUID not received from URLScan.IO')
+            }
+
+        })
+        .catch(error => {
+            console.error('Error querying URLScan.IO API:', error);
+        });
+    }
 }
 
 /* Navigate the user to the 'Blocked' page. */
