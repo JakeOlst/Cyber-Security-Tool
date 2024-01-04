@@ -11,6 +11,7 @@
 
     "permissions": [
         "webNavigation",
+        "webRequest",
         "activeTab",
         "storage"
     ],
@@ -32,5 +33,11 @@
     ],
     "background": {
         "service_worker":"scripts/background.js"
-    }
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["scripts/blockedPage.js"]
+        }
+      ]
 }

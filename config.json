@@ -34,7 +34,7 @@
             "threatCode": ["BRAND_IMPERSONATION"],
             "threatName": "Impersonating Legitimate Brand",
             "description": "This website is flagged for Brand Impersonation. This is when someone pretends to be a well-known or real company to trick users financially or with information."
-        },
+        }
         
     ]
 }

@@ -1,11 +1,14 @@
+const tabStates = {};
 const corsProxy = 'https://corsproxy.io/?'; // Temp way to bypass CORS restrictions during project //
 const exclusionList = ["vimeo.com","youtube.com","google.com"] // Exclusion list, to avoid pop-up media in websites causing additional API Calls //
 
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
+    const tabId = webURL.tabId;
 
     if (
-        (url.startsWith("http") || url.startsWith("https")) && (exclusionList.every(element => !url.includes(element)))) {
+        (url.startsWith("http") || url.startsWith("https")) && 
+        (exclusionList.every(element => !url.includes(element)))) {
         //queryGoogleWebRiskAPI(url, webURL);
         queryURLScanIOSubmit(url);
     }
