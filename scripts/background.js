@@ -6,9 +6,12 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
     const tabId = webURL.tabId;
 
-    if (
-        (url.startsWith("http") || url.startsWith("https")) && 
-        (exclusionList.every(element => !url.includes(element)))) {
+    if ((url.startsWith("http") || url.startsWith("https")) && (webURL.frameId === 0) && (exclusionList.every(element => !url.includes(element)))) {
+        tabStates[tabId] = {navigating: true};
+
+        const redirectURL = chrome.runtime.getURL('querying.html');
+        chrome.tabs.update(tabId, { url: redirectURL });
+
         //queryGoogleWebRiskAPI(url, webURL);
         queryURLScanIOSubmit(url);
     }
@@ -94,7 +97,7 @@ function queryURLScanIOResult(uuid,details)
             console.log("Submission to URLScan.IO successful");
             if (data.verdicts) {
                 console.log('URLScan.IO Response:', data);
-                if (data.verdicts.urlscan.score < 50) {
+                if (data.verdicts.urlscan.score < 0) {
 
                     let categoriesArr = data.verdicts.urlscan.categories;
                     let categories = "NEGATIVE_REPUTATION_SCORE";
@@ -102,7 +105,12 @@ function queryURLScanIOResult(uuid,details)
                         categories = categories+","+categoriesArr.pop();
                     }
                     
-                    navToBlockPage(details,data.page.url,categories);
+                    navigateBasedOnAPIResults(details, data.page.url, categories, false)
+
+                    //navToBlockPage(details,data.page.url,categories);
+                }
+                else {
+                    navigateBasedOnAPIResults(details, data.page.url, "", true)
                 }
             }
             else if ((data.status == 404) || (data.status == 200 && !data.verdicts)) {
@@ -127,10 +135,23 @@ function queryURLScanIOResult(uuid,details)
     }
 }
 
-/* Navigate the user to the 'Blocked' page. */
+function navigateBasedOnAPIResults(details, url, categories, isSafe) {
+    if (isSafe) {
+        chrome.tabs.update(details.tabId, { url: url });
+    }
+    else {
+        const redirectURL = chrome.runtime.getURL('blockedPage.html?blockedFromURL=' + url + '&blockCategories='+categories);
+        chrome.tabs.update(details.tabId, {
+            url: redirectURL
+        });
+    }
+}
+
+/* Navigate the user to the 'Blocked' page.
 function navToBlockPage(details,url,categories) {
     const redirectURL = chrome.runtime.getURL('blockedPage.html?blockedFromURL=' + url + '&blockCategories='+categories);
     chrome.tabs.update(details.tabId, {
         url: redirectURL
     });
 }
+*/
