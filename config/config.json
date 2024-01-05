@@ -26,7 +26,7 @@
             "description": "This website is flagged for containing harmful and unwanted software, which can be misleading and deceptive."
         },
         {
-            "threatCode": ["SCAM","TECH_SUPPORT_SCAM","COUNTERFEIT"],
+            "threatCode": ["SCAM","SCAMMING","TECH_SUPPORT_SCAM","COUNTERFEIT"],
             "threatName": "Scamming",
             "description": "This website is flagged for scamming. A scammer might try to fool you into giving money or personal information. "
         },

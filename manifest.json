@@ -16,7 +16,7 @@
         "storage"
     ],
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "pages/popup.html",
         "default_title": "Cyber Security Tool"
     },
     "icons": {
@@ -27,7 +27,7 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["userEducationMenu.html","blockedPage.html"],
+            "resources": ["pages/userEducationMenu.html","pages/blockedPage.html"],
             "extension_ids": ["*"]
         }
     ],

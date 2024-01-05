@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let blockedFromURL = params.get('blockedFromURL');
     let categories = params.get('blockCategories').split(','); 
 
-    fetch('../config.json')
+    fetch('../config/config.json')
     .then(response => response.json())
     .then(data => {
         const filteredCategories = data.typesOfThreat.filter (
             category => {
-                return categories.includes(category.threatCode[0]);
+                return category.threatCode.some(code => categories.includes(code));
             }
         )
         console.log("Categories: "+filteredCategories);
