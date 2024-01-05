@@ -1,5 +1,3 @@
-const corsProxy = 'https://corsproxy.io/?'; // Temp way to bypass CORS restrictions during project //
-
 document.addEventListener('DOMContentLoaded', function() {
     let params = new URLSearchParams(window.location.search);
     let blockedFromURL = params.get('blockedFromURL');
