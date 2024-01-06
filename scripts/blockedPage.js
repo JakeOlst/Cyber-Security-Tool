@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let blockedFromURL = params.get('blockedFromURL');
     let categories = params.get('blockCategories').split(','); 
 
+    if (blockedFromURL != null && blockedFromURL != "") {
+        const blockURL = document.getElementById('URL');
+        blockURL.textContent = blockedFromURL;
+    }
+
     fetch('../config/config.json')
     .then(response => response.json())
     .then(data => {

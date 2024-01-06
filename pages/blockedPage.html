@@ -7,29 +7,50 @@
         <script src="../scripts/blockedPage.js"></script>
     </head>
     <body>
-        <div class="educationMenu"></div>
-        <div class="educationTopMenu">
+        <div class="blockedPageTopSection">
             <img src="../images/logo.png">
             <h2> Suspicious Website Detected - Blocked! </h2>
         </div>
-        <div class="blockedPageBottomSection"></div>
-        <div>
-            <table id="threatsTable">
-                <tr>
-                    <th> Threat Name </th>
-                    <th> Threat Description </th>
-                </tr>
-                <tr>
-                    <td> Phishing </th>
-                    <td> This website is flagged for tricking individuals into revealing sensitive information, such as banking information. </th>
-                </tr>
-                <tr>
-                    <td> Scamming </th>
-                    <td> This website is flagged for scamming. A scammer might try to fool you into giving money or personal information. </th>
-                </tr>
-            </table>
-        </div>
-        <div>
+        <div class="blockMenu">
+            <div class='col1'></div>
+            <div class="col2">
+                <div class="blockedPageURL">
+                    <p> The URL of the blocked page is: <span id="URL"> [Unavailable] </span></p> 
+                </div>
+                <div class="threats">
+                    <table class="threatsTable">
+                        <tr class="threatsHeader">
+                            <th class="threatName"> Threat Name </th>
+                            <th> Threat Description </th>
+                        </tr>
+                        <tr>
+                            <td class="threatName"> Phishing </td>
+                            <td> This website is flagged for tricking individuals into revealing sensitive information, such as banking information. </td>
+                        </tr>
+                        <tr>
+                            <td class="threatName"> Scamming </td>
+                            <td> This website is flagged for scamming. A scammer might try to fool you into giving money or personal information. </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="extraInfo">
+                    <p> 
+                        You have been redirected away from this website as it has been flagged as unsafe. More information is available above. 
+                        Clicking on and/or entering information on this website could put you and your personal information at risk. 
+                        This could lead to identity theft, loss of money and/or unauthorised access to your accounts. 
+                        Unless you are certain that this website is safe, we would recommend avoiding this website.
+                    </p>      
+                </div>
+                <div class="buttons">
+                    <button> Return to Search </button>
+                    <button> Continue (Not Recommended) </button>
+                </div>
+            </div>
+
+            <div class="col3">
+
+            </div>
+            
         </div>
     </body>
 </html>
