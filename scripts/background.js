@@ -4,31 +4,52 @@ let lastNavURL = null;
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMinScore = 30;
+const urlScanMaxScore = -30;
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    for (var key in changes) {
+        var storageChange = changes[key];
+        console.log('Storage key "%s" in namespace "%s" changed. Old value was "%s", new value is "%s".',
+                    key,
+                    namespace,
+                    storageChange.oldValue,
+                    storageChange.newValue);
+    }
+});
 
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
     const tabId = webURL.tabId;
 
-    if (!url.startsWith(lastNavURL)) {
-        // Restricts API calls to http/https websites (frame id 0) excluding URLs in the exclusion list.
-        if ((url.startsWith("http") || url.startsWith("https")) && (webURL.frameId === 0) && (exclusionList.every(element => !url.includes(element)))) {
-            // Initiates the tab states
-            tabInfo[tabId] = { 
-                navigated: false, 
-                urlScanSafeResult: null, 
-                googleSafeResult: null,
-                urlScanCategories: "",
-                googleSafeCategories: ""
-            };
-
-            tabInfo[tabId].navigated = false;
-            const redirectURL = chrome.runtime.getURL('../pages/querying.html');
-            chrome.tabs.update(tabId, { url: redirectURL });
-            queryGoogleWebRiskAPI(url, webURL)
-            queryURLScanIOSubmit(url, webURL);
+    chrome.storage.local.get('lastNavURL', function(getLastURL) {
+        lastNavURL = getLastURL.lastNavURL || null;
+        if (lastNavURL != null) {
+            console.log('Last Navigated URL:', lastNavURL);
         }
-    }
+        else {
+            console.log('Last Nav URL not found in storage.');
+        }
+    
+        if (!url.startsWith(lastNavURL)) {
+            // Restricts API calls to http/https websites (frame id 0) excluding URLs in the exclusion list.
+            if ((url.startsWith("http") || url.startsWith("https")) && (webURL.frameId === 0) && (exclusionList.every(element => !url.includes(element)))) {
+                // Initiates the tab states
+                tabInfo[tabId] = { 
+                    navigated: false, 
+                    urlScanSafeResult: null, 
+                    googleSafeResult: null,
+                    urlScanCategories: "",
+                    googleSafeCategories: ""
+                };
+
+                tabInfo[tabId].navigated = false;
+                const redirectURL = chrome.runtime.getURL('../pages/querying.html');
+                chrome.tabs.update(tabId, { url: redirectURL });
+                queryGoogleWebRiskAPI(url, webURL)
+                queryURLScanIOSubmit(url, webURL);
+            }
+        }
+    });
 });
 
 /* Query API 1 - Google Web Risk API */
@@ -115,7 +136,7 @@ function queryURLScanIOResult(uuid,details)
             if (data.verdicts) {
                 console.log('URLScan.IO Response:', data);
                 // API has a scale of -100 (legitimate) to 100 (illegitimate). However, the score below was chosen to avoid false positives.
-                if (data.verdicts.urlscan.score > 30) {
+                if (data.verdicts.urlscan.score > urlScanMaxScore) {
                     tabInfo[details.tabId].urlScanSafeResult = false;
                     let categoriesArr = data.verdicts.urlscan.categories;
                     let categories = "NEGATIVE_REPUTATION_SCORE";
@@ -170,7 +191,21 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
                     lastNavURL = url;
-                    chrome.tabs.update(tabId, { url: url });
+
+                    chrome.storage.local.set({ lastNavURL }, function () {
+                        console.log("a=" + lastNavURL);
+                        chrome.tabs.update(tabId, { url: url });
+                    });
+
+                    chrome.storage.local.get('lastNavURL', function(getLastURL) {
+                        lastNavURL = getLastURL.lastNavURL || null;
+                        if (lastNavURL != null) {
+                            console.log('Last Navigated URL:', lastNavURL);
+                        }
+                        else {
+                            console.log('Last Nav URL not found in storage.');
+                        }
+                    });
                 }
                 else {
                     let cats = new Set();

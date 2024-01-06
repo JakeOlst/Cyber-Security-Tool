@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let params = new URLSearchParams(window.location.search);
     let blockedFromURL = params.get('blockedFromURL');
     let categories = params.get('blockCategories').split(','); 
@@ -8,18 +8,39 @@ document.addEventListener('DOMContentLoaded', function() {
         blockURL.textContent = blockedFromURL;
     }
 
+    var checkbox = document.getElementById('confirmationMessage');
 
-    const continueButton = document.getElementById('nextPage');
-    continueButton.addEventListener('click', function() {
-        const redirectPageURL = 'blockedConfirmationPage.html?blockedFromURL='+blockedFromURL+'&blockCategories='+params.get('blockCategories');
-        window.location.href = redirectPageURL;
+    var additionalContent = document.getElementById('checkboxHiddenButtons');
+
+    checkbox.addEventListener('change', function () {
+        if (checkbox.checked) {
+            additionalContent.style.display = 'block';
+        } else {
+            additionalContent.style.display = 'none';
+        }
     });
 
     const returnToSearch = document.getElementById('returnToSearch');
     returnToSearch.addEventListener('click', function() {
         history.back();
+        history.back();
     });
 
+    const navToEducation = document.getElementById('navToEducation');
+    navToEducation.addEventListener('click', function() {
+        const redirectPageURL = 'userEducationMenu.html';
+        window.location.href = redirectPageURL;
+    });
+
+    const continueButton = document.getElementById('continueToWebsite');
+    continueButton.addEventListener('click', function() {
+        if (!blockedFromURL.startsWith("https://") && !blockedFromURL.startsWith("https://")) {
+            window.location.href = "https://"+blockedFromURL;
+        }
+        else {
+            window.location.href = blockedFromURL;
+        }
+    });
 
     fetch('../config/config.json')
     .then(response => response.json())
@@ -45,4 +66,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('There was an error fetching the config.json file. Details:',error);
     });
 });
-

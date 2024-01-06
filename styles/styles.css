@@ -283,19 +283,19 @@ body
     text-align: center;
 }
 
-.threatsTable th, .threatsTable td
+#threatsTable th, #threatsTable td
 {
     border: 2px solid black;
     min-height: 100px;
     padding: 20px;
 }
 
-.threatsTable .threatsHeader
+#threatsTable .threatsHeader
 {
     font-size: 22px;
 }
 
-.threatsTable .threatName
+#threatsTable .threatName
 {
     width: 20%;
     text-align: center;
@@ -330,7 +330,7 @@ body
     text-align: center;
 }
 
-/*
+
 .threats
 {
     padding-bottom: 25px;;
@@ -361,4 +361,3 @@ body
     width: 20%;
     text-align: center;
 }
-*/

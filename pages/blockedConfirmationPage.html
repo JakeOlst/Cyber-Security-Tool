@@ -4,7 +4,7 @@
         <title> Cyber Security Tool </title>
         <link rel="stylesheet" href="../styles/styles.css">
         <meta charset="utf-8">
-        <script src="../scripts/blockedPage.js"></script>
+        <script src="../scripts/blockedConfirmationPage.js"></script>
     </head>
     <body>
         <div class="blockedPageTopSection">
@@ -25,17 +25,16 @@
                         </tr>
                     </table>
                 </div>
-                <div class="extraInfo">
-                    <p> 
-                        You have been redirected away from this website as it has been flagged as unsafe. More information is available above. 
-                        Clicking on and/or entering information on this website could put you and your personal information at risk. 
-                        This could lead to identity theft, loss of money and/or unauthorised access to your accounts. 
-                        Unless you are certain that this website is safe, we would recommend avoiding this website.
-                    </p>      
-                </div>
                 <div class="buttons">
                     <button id="returnToSearch"> Return to Search </button>
-                    <button id="nextPage"> Continue (Not Recommended) </button>
+                    <button id="navToEducation"> More Information / Help </button>
+                </div>
+                <div class="verificationButtons">
+                    <input type="checkbox" id="confirmationMessage" name="confirmationMessage">
+                    <label for="confirmationMessage">I agree to the risks associated with opening this website, and understand the risks mentioned.</label>
+                    <div id="checkboxHiddenButtons" style="display:none">
+                        <button id="continueToWebsite"> Continue to Website (Not Recommended) </button>
+                    </div>  
                 </div>
             </div>
 
