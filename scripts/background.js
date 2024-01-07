@@ -188,15 +188,14 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
             }
             if (tabInfo[details.tabId].urlScanSafeResult !== null) {
                 const urlScanResult = tabInfo[details.tabId].urlScanSafeResult;
+                lastNavURL = url;
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
-                    lastNavURL = url;
-
-                    chrome.storage.local.set({ lastNavURL }, function () {
+                    chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
                         console.log("a=" + lastNavURL);
                         chrome.tabs.update(tabId, { url: url });
                     });
-
+    
                     chrome.storage.local.get('lastNavURL', function(getLastURL) {
                         lastNavURL = getLastURL.lastNavURL || null;
                         if (lastNavURL != null) {
@@ -219,13 +218,27 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                             cats.add(cat)
                         }
                     }
+
                     let categories = Array.from(cats).join(',');
                     console.log("Website detected as unsafe. Redirecting...");
                     const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL=' + url + '&blockCategories='+categories);
-                    chrome.tabs.update(details.tabId, {
-                        url: redirectURL
+
+                    chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        console.log("a=" + lastNavURL);
+                        chrome.tabs.update(tabId, { url: redirectURL });
+                    });
+    
+                    chrome.storage.local.get('lastNavURL', function(getLastURL) {
+                        lastNavURL = getLastURL.lastNavURL || null;
+                        if (lastNavURL != null) {
+                            console.log('Last Navigated URL:', lastNavURL);
+                        }
+                        else {
+                            console.log('Last Nav URL not found in storage.');
+                        }
                     });
                 }
+
                 delete tabInfo[details.tabId];
             }
             else {
