@@ -144,78 +144,6 @@ body
 }
 
 /* 
-    CSS code for 'template.html' web page.
-*/
-
-.articleMenu
-{
-    width: 100%;
-    display: grid;
-    min-height: 80vh;
-    align-items: center;
-    grid-template-rows: 60px auto;
-}
-
-.articleTopBar
-{
-    height: 100%;
-    width: 100%;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 20% 60px auto 20% 60px;
-}
-
-.title, .jumpTo
-{
-    height: 60px;
-    width: 100%;
-}
-
-.jumpTo
-{
-    background: #F5F5F5;
-}
-
-.articleTopBar h3,h4
-{
-    font-size: 22px;
-    text-align: center;
-    margin-block: 0;
-}
-
-.articleLogo img
-{
-    width: 35px;
-    padding: 11.5px;
-}
-
-.articleBottomBar
-{
-    height: 100%;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 20% 80%;
-}
-
-.navBar
-{
-    height: 100%;
-}
-
-.navBar ul
-{
-    background: #F5F5F5;
-    margin: 0;
-    height: 100%;
-}
-
-.navBar li
-{
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-/* 
     CSS code for 'blockedPage.html' web page.
 */
 
@@ -360,4 +288,170 @@ body
 {
     width: 20%;
     text-align: center;
+}
+
+/* 
+    CSS code for 'blockedPage.html' web page.
+*/
+
+.queryMessage
+{
+    width: 90%;
+    padding: 10% 5%;
+    font-size: 22px;
+    text-align: center;
+}
+
+/* 
+    CSS code for 'learnAbout' HTML pages.
+*/
+
+.articleTopMenu
+{
+    min-height: 80px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 125px auto 125px;
+    column-gap: 10px;
+    padding: 2%;
+    background: #F5F5F5;
+}
+
+.articleTopMenu img
+{
+    max-width: 60px;
+    padding: 10px 5px;
+}
+
+.articleTopMenu h2
+{
+    height: inherit;
+    text-align: center;
+    font-size: 2rem;
+    margin-block: 0;
+}
+
+.articleTopMenu p
+{
+    text-align: center;
+    font-size: 24px;
+    margin-block: 0;
+}
+
+.articleTopMenu button
+{
+    width: 100%;
+    height: 60%;
+    margin: 7.5% auto;
+}
+
+.articleMenu
+{
+    width: 100%;
+    display: grid;
+    min-height: 80vh;
+    align-items: center;
+    grid-template-rows: 120px auto;
+}
+
+.articleTopBar
+{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% 120px auto 120px;
+}
+
+.articleTopBar h3,h4
+{
+    text-align: center;
+    margin-block: 0;
+}
+
+.jumpTo
+{
+    height: 30px;
+    width: 100%;
+    background: #F5F5F5;
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+.jumpTo h3
+{
+    font-size: 1.6rem;
+}
+
+.title
+{
+    font-size: 1.8rem;
+    height: 30px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+.title h2
+{
+    font-size: 1.6rem;
+    padding-top: 45px;
+    height: 30px;
+    padding-bottom: 45px;
+}
+
+.articleLogo
+{
+    width: 120px;
+    height: 100%;
+}
+
+.articleLogo img
+{
+    width: 75%;
+    height: 75%;
+    padding: 12.5%;
+}
+
+.articleBottomBar
+{
+    height: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% 80%;
+}
+
+.navBar
+{
+    height: 100%;
+    background: #F5F5F5;
+}
+
+.navBar ul
+{
+    margin: 0;
+    height: inherit;
+}
+
+.navBar li
+{
+    font-size: 1.3rem;
+    margin: 20px 0;
+}
+
+.mainContent
+{
+    padding: 1.5%;
+}
+
+.mainContent h1
+{
+    padding: 20px 0;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.mainContent p, .mainContent li
+{
+    font-size: 1.4rem;
+    padding-top: 10px;
 }

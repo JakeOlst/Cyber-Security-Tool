@@ -4,18 +4,7 @@ let lastNavURL = null;
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMaxScore = -30;
-
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (var key in changes) {
-        var storageChange = changes[key];
-        console.log('Storage key "%s" in namespace "%s" changed. Old value was "%s", new value is "%s".',
-                    key,
-                    namespace,
-                    storageChange.oldValue,
-                    storageChange.newValue);
-    }
-});
+const urlScanMaxScore = 30;
 
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
@@ -56,7 +45,8 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
 function queryGoogleWebRiskAPI(url, details) {
     const apiKey = '&key='+'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
     const encodedUrl = '&uri='+encodeURIComponent(url);
-    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE`;
+    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&
+        threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE`;
 
     fetch((apiEndpoint+encodedUrl+apiKey))
     .then(response => response.json())
@@ -70,6 +60,7 @@ function queryGoogleWebRiskAPI(url, details) {
         }
         else {
             tabInfo[details.tabId].googleSafeResult = true;
+            console.log(tabInfo[details.tabId].googleSafeResult);
             navigateBasedOnAPIResults(details, url, true);
         }
     })
@@ -135,7 +126,6 @@ function queryURLScanIOResult(uuid,details)
             console.log("Result requested from URLScan.io");
             if (data.verdicts) {
                 console.log('URLScan.IO Response:', data);
-                // API has a scale of -100 (legitimate) to 100 (illegitimate). However, the score below was chosen to avoid false positives.
                 if (data.verdicts.urlscan.score > urlScanMaxScore) {
                     tabInfo[details.tabId].urlScanSafeResult = false;
                     let categoriesArr = data.verdicts.urlscan.categories;
@@ -149,6 +139,7 @@ function queryURLScanIOResult(uuid,details)
                 }
                 else {
                     tabInfo[details.tabId].urlScanSafeResult = true;
+                    console.log(tabInfo[details.tabId].urlScanSafeResult);
                     navigateBasedOnAPIResults(details, data.page.url, true)
                 }
             }
@@ -178,9 +169,9 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
     const tabId = details.tabId;
     const googleResult = tabInfo[details.tabId].googleSafeResult !== false;
 
-    awaitResults();
+    getResults();
 
-    function awaitResults() {
+    function getResults() {
         if (tabInfo[details.tabId] != undefined) {
             if (tabInfo[details.tabId].navigated) {
                 console.log("Navigation Completed.");
@@ -194,16 +185,6 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
                         console.log("a=" + lastNavURL);
                         chrome.tabs.update(tabId, { url: url });
-                    });
-    
-                    chrome.storage.local.get('lastNavURL', function(getLastURL) {
-                        lastNavURL = getLastURL.lastNavURL || null;
-                        if (lastNavURL != null) {
-                            console.log('Last Navigated URL:', lastNavURL);
-                        }
-                        else {
-                            console.log('Last Nav URL not found in storage.');
-                        }
                     });
                 }
                 else {
@@ -221,7 +202,8 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
 
                     let categories = Array.from(cats).join(',');
                     console.log("Website detected as unsafe. Redirecting...");
-                    const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL=' + url + '&blockCategories='+categories);
+                    const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
+                     + url + '&blockCategories='+categories);
 
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
                         console.log("a=" + lastNavURL);
@@ -243,9 +225,50 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
             }
             else {
                 console.log("Waiting for response from URLScan.io. Timeout for 1.5 seconds.");
-                setTimeout(awaitResults, 1500);
+                setTimeout(getResults, 1500);
             }
         }
 
     }
 }
+
+let tab;
+let newTab;
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    console.log("Message Received: "+message);
+
+    if (message.type === "open-new-tab") {
+        chrome.tabs.query({active: true, currentWindow: true },function (tabs) {
+            tab = tabs[0];
+            console.log("Current tab ID: "+tab.id);
+        })
+        chrome.tabs.create({ url: chrome.runtime.getURL("pages/paymentInfoPopup.html") }, function (createdTab) {
+            newTab = createdTab;
+            console.log("New tab created with ID: " + newTab.id);
+        });
+    }
+    else if (message.type === "close-popup") {
+        console.log("Closed popup tab with ID: " + newTab.id);
+        chrome.tabs.remove(newTab.id);
+        newTab = null;
+    }
+    else if (message.type === "close-both-tabs") {
+        console.log("Closed popup tab with ID: " + newTab.id);
+        chrome.tabs.remove(newTab.id);
+        newTab = null;
+        console.log("Closed popup tab with ID: " + tab.id);
+        chrome.tabs.remove(tab.id);
+        tab = null;
+    }
+    else if (message.type === "payment-detected") {
+        chrome.tabs.query( { 
+          active: true, 
+          currentWindow: true 
+        }, function (tabs) {
+            const activeTabId = tabs[0].id;
+            chrome.tabs.sendMessage(activeTabId, { type: "show-popup" });
+        });
+      }
+
+})

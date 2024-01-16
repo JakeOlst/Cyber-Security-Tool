@@ -13,7 +13,8 @@
         "webNavigation",
         "webRequest",
         "activeTab",
-        "storage"
+        "storage",
+        "tabs"
     ],
     "action": {
         "default_popup": "pages/popup.html",
@@ -27,17 +28,27 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["pages/userEducationMenu.html","pages/blockedPage.html"],
+            "resources": [
+                "pages/userEducationMenu.html",
+                "pages/blockedPage.html",
+                "pages/blockedConfirmationPage.html",
+                "pages/popup.html",
+                "pages/querying.html",
+                "pages/paymentInfoPopup.html"
+            ],
             "extension_ids": ["*"]
         }
     ],
     "background": {
-        "service_worker":"scripts/background.js"
+        "service_worker": "scripts/background.js"
     },
     "content_scripts": [
         {
-          "matches": ["<all_urls>"],
-          "js": ["scripts/blockedPage.js"]
+            "matches": ["<all_urls>"],
+            "js": [
+                "scripts/content.js",
+                "scripts/paymentInfoPopup.js"
+              ]
         }
-      ]
+    ]
 }
