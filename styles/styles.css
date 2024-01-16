@@ -455,3 +455,29 @@ body
     font-size: 1.4rem;
     padding-top: 10px;
 }
+
+.paymentMessage
+{
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 2.5% 0;
+}
+
+#payment-info-popup
+{
+    margin: 4% 10%;
+}
+
+#payment-info-popup li
+{
+    margin-left: 25%;
+    font-size: 1.2rem;
+}
+
+#payment-info-popup button
+{
+    width: 20%;
+    min-height: 80px;
+    margin: 3.5% 14.5%;
+    font-size: 1.4rem;
+}

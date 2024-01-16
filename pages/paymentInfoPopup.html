@@ -2,14 +2,35 @@
 <html>
 <head>
   <title>Payment Warning</title>
+  <link rel="stylesheet" href="../styles/styles.css">
   <script src="../scripts/paymentInfoPopup.js"></script>
 </head>
 <body>
-  <div id="payment-info-popup">
-    <h3>Payment Warning</h3>
-    <p>You are entering payment information. Are you sure you want to proceed?</p>
-    <button id="proceed">Proceed</button>
-    <button id="cancel">Cancel</button>
+  <div class="blockedPageTopSection">
+    <img src="../images/logo.png">
+    <h2>Payment Warning</h2>
   </div>
+    <div id="payment-info-popup">
+      <p class="paymentMessage">It has been detected that you are inputting your payment information.</p>
+      <p class="paymentMessage">Before you proceed with making a payment, please ensure:</p>
+        <ul>
+          <li>The website name is accurate and trustworthy.</li>
+          <li>The website URL is accurate and trustworthy, such as:</li>
+        </ul>
+        <p class="paymentMessage">'https://www.amazon.com/' vs 'https://www.amaazon.com/'.</p>
+        <ul>
+          <li>Is the deal too good to be true?</li>
+          <li>The website has a green padlock in the top-left corner.</li>
+        </ul>
+      <p class="paymentMessage">
+        In doubt? Consider checking Website Review websites for the website you are using, such as:
+        <ul>
+          <li><a href="https://www.trustpilot.com/">TrustPilot - Website Reviews</a></li>
+          <li><a href="https://www.sitejabber.com/">SiteJabber - Website Reviews</a></li>
+        </ul>
+      </p>
+      <button id="proceed">Continue with Payment</button>
+      <button id="cancel">Cancel Payment</button>
+    </div>
 </body>
 </html>
