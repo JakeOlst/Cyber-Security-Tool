@@ -1,3 +1,8 @@
+a
+{
+    text-decoration: none;
+}
+
 html
 {
     font-family: Verdana, sans-serif;
@@ -8,6 +13,12 @@ body
     margin: 0;
     padding: 0;
 }
+
+/*
+    Generic CSS Code (cross-page)
+*/
+
+
 
 /* 
     CSS code for 'popup.html' web page.
@@ -59,6 +70,7 @@ body
     height: 50px;
     margin: 0 50px 30px 50px;
     font-size: 20px;
+    display: inline-block;
 }
 
 /* 
@@ -420,6 +432,25 @@ body
     grid-template-columns: 20% 80%;
 }
 
+.articleNavPage
+{
+    margin: 5% 10%;
+    width: 65%;
+}
+
+.articleNavPage ul
+{
+    width: 50%;
+    margin: 5% 0;
+}
+
+.articleNavPage li
+{
+    padding: 5%;
+    margin: 5%;
+    border: black solid;
+}
+
 .navBar
 {
     height: 100%;
@@ -480,4 +511,44 @@ body
     min-height: 80px;
     margin: 3.5% 14.5%;
     font-size: 1.4rem;
+}
+
+/*
+learn About Nav Pages
+*/
+
+.articleNavPage
+{
+    width: 50%;
+    margin: 2.5% 25%;
+    height: 100%;
+}
+
+.articleMenuItems button
+{
+    min-height: 40px;
+    width: 100%;
+}
+
+.articleMenuItems 
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.articleMenuItems button 
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.articleName
+{
+    flex: 1;
+}
+
+.articleName
+{
+    font-size: 22px;
 }
