@@ -59,7 +59,7 @@ function queryGoogleWebRiskAPI(url, details) {
             navigateBasedOnAPIResults(details, url, false);
         }
         else {
-            tabInfo[details.tabId].googleSafeResult = true;
+            tabInfo[details.tabId].googleSafeResult = true
             console.log(tabInfo[details.tabId].googleSafeResult);
             navigateBasedOnAPIResults(details, url, true);
         }
@@ -206,7 +206,6 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                      + url + '&blockCategories='+categories);
 
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        console.log("a=" + lastNavURL);
                         chrome.tabs.update(tabId, { url: redirectURL });
                     });
     
@@ -241,11 +240,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.type === "open-new-tab") {
         chrome.tabs.query({active: true, currentWindow: true },function (tabs) {
             tab = tabs[0];
-            console.log("Current tab ID: "+tab.id);
         })
         chrome.tabs.create({ url: chrome.runtime.getURL("pages/paymentInfoPopup.html") }, function (createdTab) {
             newTab = createdTab;
-            console.log("New tab created with ID: " + newTab.id);
         });
     }
     else if (message.type === "close-popup") {
