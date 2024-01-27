@@ -47,8 +47,9 @@
             "matches": ["<all_urls>"],
             "js": [
                 "scripts/content.js",
-                "scripts/paymentInfoPopup.js"
-              ]
+                "scripts/paymentInfoPopup.js",
+                "scripts/advertisementBlocking.js"
+            ]
         }
     ]
 }
