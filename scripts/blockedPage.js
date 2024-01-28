@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 cell2.textContent = category.description;
             }
         )
-
     })
     .catch(error => {
         console.error('There was an error fetching the config.json file. Details:',error);

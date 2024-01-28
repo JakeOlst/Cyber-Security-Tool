@@ -48,7 +48,8 @@
             "js": [
                 "scripts/content.js",
                 "scripts/paymentInfoPopup.js",
-                "scripts/advertisementBlocking.js"
+                "scripts/advertisementBlocking.js",
+                "scripts/blockHistory.js"
             ]
         }
     ]

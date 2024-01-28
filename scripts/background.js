@@ -4,7 +4,7 @@ let lastNavURL = null;
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMaxScore = 30;
+const urlScanMaxScore = -30;
 
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
@@ -129,7 +129,7 @@ function queryURLScanIOResult(uuid,details)
                 if (data.verdicts.urlscan.score > urlScanMaxScore) {
                     tabInfo[details.tabId].urlScanSafeResult = false;
                     let categoriesArr = data.verdicts.urlscan.categories;
-                    let categories = "NEGATIVE_REPUTATION_SCORE";
+                    let categories = "NEGATIVE_REPUTATION_SCORE,PHISHING";
                     while (categoriesArr.length > 0) {
                         categories = categories+","+categoriesArr.pop();
                     }
@@ -202,6 +202,7 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
 
                     let categories = Array.from(cats).join(',');
                     console.log("Website detected as unsafe. Redirecting...");
+                    storeBlockDetails(tabId, url, categories);
                     const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
                      + url + '&blockCategories='+categories);
 
@@ -229,6 +230,25 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
         }
 
     }
+}
+
+/*
+ * Store Blocking Details
+ */
+
+function storeBlockDetails(tabId, blockedURL, blockCategories) {
+    const blockDetails = {
+        blockedURL,
+        blockCategories,
+        timestamp: new Date().toISOString(),
+    };
+
+    chrome.storage.local.get({blockHistory: [] }, function(result) {
+        const blockHistory = result.blockHistory || [];
+        blockHistory.push(blockDetails);
+        chrome.storage.local.set({ blockHistory});
+    });
+    console.log("Stored Block with details: "+blockDetails);
 }
 
 
