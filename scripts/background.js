@@ -231,6 +231,11 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
     }
 }
 
+
+/*
+ * Payment Info Detection Behaviour
+*/
+
 let tab;
 let newTab;
 
@@ -269,3 +274,35 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
       }
 
 })
+
+/*
+ * Background Ad Blocking Functionality.
+ */
+
+let easyList = [];
+const easyListURL = 'https://easylist.to/easylist/easylist.txt';
+const updateIntervalHours = 24;
+
+function updateEasyList() {
+    console.log('Fetching EasyList...');
+    fetch(easyListURL)
+        .then(response => response.text())
+        .then(easyListText => {
+            easyList = easyListText.split('\n')
+                .filter(line => line.startsWith('||') || line.startsWith('##'))
+                .map(line => line.trim().replace(/^\|\|/, '').replace(/\^$/, ''));
+            easyList.push("googleadservices.com/pagead/");
+            console.log('EasyList content:', easyList);
+            chrome.storage.local.set({ 'easyList': easyList }, function() {
+                console.log('EasyList updated and stored:', easyList);
+            });
+        })
+        .catch(error => console.error('Error fetching EasyList:', error));
+}
+
+
+// Set interval to update EasyList
+setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
+
+// Initial fetch on extension install or browser startup
+chrome.runtime.onInstalled.addListener(updateEasyList);
