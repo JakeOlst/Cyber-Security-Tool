@@ -11,13 +11,13 @@ function blockAdsOnPage() {
         const src = element.src || element.getAttribute('src');
         if (src && easyList.some(domain => src.includes(domain))) {
             element.remove();
-            console.log("Ad Removed.");
+            //console.log("Ad Removed.");
         }
     });
 }
 
 chrome.storage.local.get('easyList', (result) => {
-    console.log("Result: "+result.easyList);
+    //console.log("Result: "+result.easyList);
     easyList = result.easyList;
     blockAdsOnPage();
 });

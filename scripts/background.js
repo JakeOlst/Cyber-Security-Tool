@@ -183,7 +183,6 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        console.log("a=" + lastNavURL);
                         chrome.tabs.update(tabId, { url: url });
                     });
                 }
@@ -248,7 +247,7 @@ function storeBlockDetails(tabId, blockedURL, blockCategories) {
         blockHistory.push(blockDetails);
         chrome.storage.local.set({ blockHistory});
     });
-    console.log("Stored Block with details: "+blockDetails);
+    //console.log("Stored Block with details: "+blockDetails);
 }
 
 
@@ -260,7 +259,7 @@ let tab;
 let newTab;
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    console.log("Message Received: "+message);
+    //console.log("Message Received: "+message);
 
 
     if (message.type === "payment-detected") {
@@ -295,7 +294,7 @@ const easyListURL = 'https://easylist.to/easylist/easylist.txt';
 const updateIntervalHours = 24;
 
 function updateEasyList() {
-    console.log('Fetching EasyList...');
+    console.log('Update Time! Fetching EasyList...');
     fetch(easyListURL)
         .then(response => response.text())
         .then(easyListText => {
@@ -305,7 +304,6 @@ function updateEasyList() {
             easyList.push("googleadservices.com/pagead/");
             console.log('EasyList content:', easyList);
             chrome.storage.local.set({ 'easyList': easyList }, function() {
-                console.log('EasyList updated and stored:', easyList);
             });
         })
         .catch(error => console.error('Error fetching EasyList:', error));

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             // Send a message to close only the active tab
             chrome.runtime.sendMessage({ type: "close-popup", tabId: tabs[0].id });
-            console.log("Message sent from paymentInfoPopup.js");
+            //console.log("Message sent from paymentInfoPopup.js");
         });
     });
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             // Send a message to close only the active tab
             chrome.runtime.sendMessage({ type: "close-both-tabs", tabId: tabs[0].id });
-            console.log("Message sent from paymentInfoPopup.js");
+            //console.log("Message sent from paymentInfoPopup.js");
         });
     });
 });
