@@ -262,10 +262,11 @@ let newTab;
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log("Message Received: "+message);
 
-    if (message.type === "open-new-tab") {
-        chrome.tabs.query({active: true, currentWindow: true },function (tabs) {
-            tab = tabs[0];
-        })
+
+    if (message.type === "payment-detected") {
+        chrome.tabs.query( { active: true, currentWindow: true }, function (tabs) {
+              tab = tabs[0];
+        });
         chrome.tabs.create({ url: chrome.runtime.getURL("pages/paymentInfoPopup.html") }, function (createdTab) {
             newTab = createdTab;
         });
@@ -283,16 +284,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         chrome.tabs.remove(tab.id);
         tab = null;
     }
-    else if (message.type === "payment-detected") {
-        chrome.tabs.query( { 
-          active: true, 
-          currentWindow: true 
-        }, function (tabs) {
-            const activeTabId = tabs[0].id;
-            chrome.tabs.sendMessage(activeTabId, { type: "show-popup" });
-        });
-      }
-
 })
 
 /*

@@ -1,6 +1,6 @@
 {
     "name": "Cyber Security Tool",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "Cyber Security Tool",
     "manifest_version": 3,
     "author": "Jake Stainthorpe | K2122623",
@@ -29,12 +29,15 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "pages/userEducationMenu.html",
-                "pages/blockedPage.html",
                 "pages/blockedConfirmationPage.html",
-                "pages/popup.html",
+                "pages/blockedPage.html",
+                "pages/paymentInfoPopup.html",
                 "pages/querying.html",
-                "pages/paymentInfoPopup.html"
+                "pages/settings.html",
+                "pages/showBlockHistory.html",
+                "pages/userEducationMenu.html",
+                "pages/userEducationArticle/learnAboutCyberThreats/*",
+                "pages/userEducationArticle/learnAboutDeviceSecurity/*"
             ],
             "extension_ids": ["*"]
         }
@@ -46,10 +49,8 @@
         {
             "matches": ["<all_urls>"],
             "js": [
-                "scripts/content.js",
-                "scripts/paymentInfoPopup.js",
-                "scripts/advertisementBlocking.js",
-                "scripts/blockHistory.js"
+                "scripts/background/paymentInfoDetection.js",
+                "scripts/background/advertisementBlocking.js"
             ]
         }
     ]
