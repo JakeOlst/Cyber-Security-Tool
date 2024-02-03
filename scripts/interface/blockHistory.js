@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('../config/config.json')
+    fetch('../../config/threatTypes.json')
     .then(response => response.json())
     .then(data => {
         const threatDetails = data.typesOfThreat;

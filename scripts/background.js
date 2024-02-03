@@ -4,7 +4,7 @@ let lastNavURL = null;
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMaxScore = -30;
+const urlScanMaxScore = 30;
 
 chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
@@ -39,6 +39,11 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
             }
         }
     });
+
+    console.log(url);
+    if (url.includes("google.com")) {
+        chrome.tabs.remove(tabId);
+    }
 });
 
 /* Query API 1 - Google Web Risk API */

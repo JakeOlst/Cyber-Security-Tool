@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    fetch('../config/config.json')
+    fetch('../../config/threatTypes.json')
     .then(response => response.json())
     .then(data => {
         const filteredCategories = data.typesOfThreat.filter (
@@ -63,6 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     })
     .catch(error => {
-        console.error('There was an error fetching the config.json file. Details:',error);
+        console.error('There was an error fetching the threatTypes.json file. Details:',error);
     });
 });
