@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Banking Website Warning (Cyber Security Tool) </title>
+        <!-- Metadata -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Warning when accessing a Banking Website.">
+        <meta name="author" content="Jake Stainthorpe">
+        
+        <!-- Stylesheet and Scripts -->
+        <link rel="stylesheet" href="../styles/styles.css">
+        <script src="../scripts/interface/bankingWebsiteDetected.js"></script>
+    </head>
+    <body>
+        <div class="blockedPageTopSection">
+            <img src="../images/logo.png">
+            <h2>Payment Warning</h2>
+        </div>
+        <div id="payment-info-popup">
+            <div>
+                <div class="paymentMessage"> 
+                    <p> It has been detected that you are entering the Banking Website. </p> 
+                    <p id="popupBankName"> Bank not Found... </p>
+                </div>
+            </div>
+            <div>
+                <div class="paymentMessage"> 
+                    <p>
+                        Before you proceed with making a payment, please note that Fraudsters can <br>
+                        pretend to be genuine companies, such as banks. They can even copy genuine <br>
+                        phone numbers and sound professional to trick you into thinking they are real.  
+                    </p>
+                </div>
+            </div>
+            <div>
+                <p class="paymentMessage"> Your bank will never ask for you to: </p>
+                <ul>
+                    <li> Provide your PIN number and/or passwords. </li>
+                    <li> Request for you to transfer your money from one account to another. </li>
+                    <li> Send you a Text or Email providing them with your Email Address. </li>
+                </ul>
+            </div>
+            <div>
+                <div class="paymentMessage">
+                    <p>
+                        If you are on the phone with your bank, and you feel like it may be suspicious or a scam, just hang up.
+                        You can contact your bank using the details on the Contact Us page below: 
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="paymentMessage"> 
+                    <p id="popupBankContact"> Bank not Found... </p>
+                </div>
+                <button id="proceed">Continue to Banking Website</button>
+                <button id="cancel">Close Banking Website</button>
+            </div>
+        </div>
+    </body>
+</html>

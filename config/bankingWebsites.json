@@ -1,879 +1,119 @@
 {
     "bankingWebsites": [
         {
-            "bankingWebsiteURLs": ["abnamro"],
-            "bankingWebsiteName": "ABN AMRO (UK)",
-            "bankingWebsiteContact": "https://www.abnamro.com/uk/en/contact"
+            "bankDomainName": ["atombank"],
+            "bankName": "Atom Bank",
+            "bankContactPage": "https://www.atombank.co.uk/contact/"
         },
         {
-            "bankingWebsiteURLs": ["theaccessbankukltd"],
-            "bankingWebsiteName": "Access Bank UK Limited",
-            "bankingWebsiteContact": "https://www.theaccessbankukltd.co.uk/contact-us/"
+            "bankDomainName": ["bankofirelanduk"],
+            "bankName": "Bank of Ireland",
+            "bankContactPage": "https://www.bankofirelanduk.com/online-banking/useful-contact-numbers/"
         },
         {
-            "bankingWebsiteURLs": ["adambank"],
-            "bankingWebsiteName": "Adam & Company",
-            "bankingWebsiteContact": "https://www.adamandcompany.co.uk/contact-us/"
+            "bankDomainName": ["bankofscotland"],
+            "bankName": "Bank of Scotland",
+            "bankContactPage": "https://www.bankofscotland.co.uk/helpcentre.html"
         },
         {
-            "bankingWebsiteURLs": ["adib"],
-            "bankingWebsiteName": "ADIB",
-            "bankingWebsiteContact": "https://www.adib.co.uk/en/Pages/contact.aspx"
+            "bankDomainName": ["barclays"],
+            "bankName": "Barclays",
+            "bankContactPage": "https://www.barclays.co.uk/help/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["abchina"],
-            "bankingWebsiteName": "Agricultural Bank of China (UK)",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["chase"],
+            "bankName": "Chase Bank",
+            "bankContactPage": "https://www.chase.co.uk/gb/en/support/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["ahliunited"],
-            "bankingWebsiteName": "Ahli United Bank",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["coventrybuildingsociety"],
+            "bankName": "Coventry Building Society",
+            "bankContactPage": "https://www.coventrybuildingsociety.co.uk/member/help/member-support/ways-to-get-in-touch.html"
         },
         {
-            "bankingWebsiteURLs": ["aibgb"],
-            "bankingWebsiteName": "AIB Group (UK)",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["firstdirect"],
+            "bankName": "First Direct",
+            "bankContactPage": "https://www.firstdirect.com/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["aldermore"],
-            "bankingWebsiteName": "Aldermore Bank",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["halifax"],
+            "bankName": "Halifax",
+            "bankContactPage": "https://www.halifax.co.uk/contactus.html"
         },
         {
-            "bankingWebsiteURLs": ["allfunds"],
-            "bankingWebsiteName": "Allfunds Bank SA",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["hsbc"],
+            "bankName": "HSBC",
+            "bankContactPage": "https://www.hsbc.co.uk/contact/"
         },
         {
-            "bankingWebsiteURLs": ["allica"],
-            "bankingWebsiteName": "Allica Bank",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["lloydsbank"],
+            "bankName": "Lloyds Bank",
+            "bankContactPage": "https://www.lloydsbank.com/contact-us.html"
         },
         {
-            "bankingWebsiteURLs": ["aib"],
-            "bankingWebsiteName": "Allied Irish Banks",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["bank.marksandspencer"],
+            "bankName": "M&S Bank",
+            "bankContactPage": "https://bank.marksandspencer.com/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["allstarcard"],
-            "bankingWebsiteName": "Allstar Plus",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["metrobankonline"],
+            "bankName": "Metro Bank",
+            "bankContactPage": "https://www.metrobankonline.co.uk/help-and-support/get-in-touch/"
         },
         {
-            "bankingWebsiteURLs": ["alpha-bank","alphabank"],
-            "bankingWebsiteName": "Alpha Bank London",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["monzo"],
+            "bankName": "Monzo Bank",
+            "bankContactPage": "https://monzo.com/help/app-help/contacting-support/"
         },
         {
-            "bankingWebsiteURLs": ["alrayanbank"],
-            "bankingWebsiteName": "Al Rayan Bank",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["nationwide"],
+            "bankName": "Nationwide",
+            "bankContactPage": "https://www.nationwide.co.uk/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["anz"],
-            "bankingWebsiteName": "Australia and New Zealand Banking Group Ltd",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["natwest"],
+            "bankName": "NatWest",
+            "bankContactPage": "https://www.natwest.com/support-centre/contact-us.html"
         },
         {
-            "bankingWebsiteURLs": ["arabbank"],
-            "bankingWebsiteName": "Arab National Bank",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["revolut"],
+            "bankName": "Revolut",
+            "bankContactPage": "https://www.revolut.com/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["arbuthnotlatham"],
-            "bankingWebsiteName": "Arbuthnot Latham",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["rbs"],
+            "bankName": "Royal Bank of Scotland",
+            "bankContactPage": "https://www.rbs.co.uk/support-centre/contact-us.html"
         },
         {
-            "bankingWebsiteURLs": ["atombank"],
-            "bankingWebsiteName": "Atom Bank Plc",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["santander"],
+            "bankName": "Santander",
+            "bankContactPage": "https://www.santander.co.uk/personal/support/contact-us"
         },
         {
-            "bankingWebsiteURLs": ["axisbankuk"],
-            "bankingWebsiteName": "Axis Bank UK",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["starlingbank"],
+            "bankName": "Starling Bank",
+            "bankContactPage": "https://www.starlingbank.com/contact/"
         },
         {
-            "bankingWebsiteURLs": ["bbvauk"],
-            "bankingWebsiteName": "Banco Bilbao Vizcaya Argentaria SA",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["tescobank"],
+            "bankName": "Tesco Bank",
+            "bankContactPage": "https://www.tescobank.com/help/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["bradescoeuropa"],
-            "bankingWebsiteName": "Banco Bradesco Europa S.A.",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["tsb"],
+            "bankName": "TSB",
+            "bankContactPage": "https://www.tsb.co.uk/contact-us/"
         },
         {
-            "bankingWebsiteURLs": ["bancosabadelluk"],
-            "bankingWebsiteName": "Banco de Sabadell",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["ulsterbank"],
+            "bankName": "Ulster Bank",
+            "bankContactPage": "https://www.ulsterbank.co.uk/help-and-support/contact-numbers.html"
         },
         {
-            "bankingWebsiteURLs": ["bb"],
-            "bankingWebsiteName": "Banco do Brasil SA",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bangkokbank"],
-            "bankingWebsiteName": "Bangkok Bank Public Company Ltd",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bank-abc","bankabc"],
-            "bankingWebsiteName": "Bank ABC",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankingcircle"],
-            "bankingWebsiteName": "Banking Circle S.A.",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["jsafrasarasin"],
-            "bankingWebsiteName": "Bank J Safra Sarasin (Gibraltar) Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankleumi"],
-            "bankingWebsiteName": "Bank Leumi",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankmandiri"],
-            "bankingWebsiteName": "Bank Mandiri (Europe)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofafricaunitedkingdom", "bankofafrica"],
-            "bankingWebsiteName": "Bank of Africa United Kingdom plc",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bofaml"],
-            "bankingWebsiteName": "Bank of America Merrill Lynch",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofbaroda"],
-            "bankingWebsiteName": "Bank of Baroda",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofbeirut"],
-            "bankingWebsiteName": "Bank of Beirut",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofceylon"],
-            "bankingWebsiteName": "Bank of Ceylon",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofchina"],
-            "bankingWebsiteName": "Bank of China",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankcomm"],
-            "bankingWebsiteName": "Bank of Communications (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofcyprus"],
-            "bankingWebsiteName": "Bank of Cyprus (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hkbea"],
-            "bankingWebsiteName": "Bank of East Asia Ltd",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofindia"],
-            "bankingWebsiteName": "Bank of India",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofireland"],
-            "bankingWebsiteName": "Bank of Ireland (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["blme"],
-            "bankingWebsiteName": "Bank of London and The Middle East",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bmo"],
-            "bankingWebsiteName": "Bank of Montreal",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bnymellon"],
-            "bankingWebsiteName": "Bank of New York Mellon",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankofscotland"],
-            "bankingWebsiteName": "Bank of Scotland",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bot"],
-            "bankingWebsiteName": "Bank of Taiwan",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bpi"],
-            "bankingWebsiteName": "Bank of the Philippine Islands (Europe)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["saderat-plc"],
-            "bankingWebsiteName": "Bank Saderat",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["banksepah"],
-            "bankingWebsiteName": "Bank Sepah International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["banquehavilland"],
-            "bankingWebsiteName": "Banque Havilland S.A.",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["banquetransatlantique"],
-            "bankingWebsiteName": "Banque Transatlantique SA",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["barclays"],
-            "bankingWebsiteName": "Barclays Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bayernlb"],
-            "bankingWebsiteName": "Bayerische Landesbank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bira"],
-            "bankingWebsiteName": "BIRA Bank (Birmingham Bank Limited)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["blombank"],
-            "bankingWebsiteName": "BLOM BANK France",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bnf"],
-            "bankingWebsiteName": "BNF Bank plc",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bnpparibas"],
-            "bankingWebsiteName": "BNP Paribas",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bacb"],
-            "bankingWebsiteName": "British Arab Commercial Bank (BACB)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["british-business-bank"],
-            "bankingWebsiteName": "British Business Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["brownshipley"],
-            "bankingWebsiteName": "Brown Shipley & Co",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["butterfieldgroup"],
-            "bankingWebsiteName": "Butterfield Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["byblosbank"],
-            "bankingWebsiteName": "Byblos Bank Europe SA",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["caceis"],
-            "bankingWebsiteName": "CACEIS Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["cafonline"],
-            "bankingWebsiteName": "CAF Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["caixabank"],
-            "bankingWebsiteName": "Caixabank SA",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["ccbank"],
-            "bankingWebsiteName": "Cambridge & Counties Bank Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["cibc"],
-            "bankingWebsiteName": "Canadian Imperial Bank of Commerce",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["canbanklondon"],
-            "bankingWebsiteName": "Canara Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["castletrust"],
-            "bankingWebsiteName": "Castle Trust Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["caterallen"],
-            "bankingWebsiteName": "Cater Allen Private Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bankchb"],
-            "bankingWebsiteName": "Chang Hwa Commercial Bank Ltd",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["charitybank"],
-            "bankingWebsiteName": "Charity Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["chartercourtfs"],
-            "bankingWebsiteName": "Charter Court Financial Services",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["chartersavingsbank"],
-            "bankingWebsiteName": "Charter Savings Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["chase"],
-            "bankingWebsiteName": "Chase",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["chetwood"],
-            "bankingWebsiteName": "Chetwood Financial Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["ccb"],
-            "bankingWebsiteName": "China Construction Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hoaresbank"],
-            "bankingWebsiteName": "C. Hoare & Co.",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["cimb"],
-            "bankingWebsiteName": "CIMB Bank Berhad",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["citibank"],
-            "bankingWebsiteName": "Citibank UK",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["clearstream"],
-            "bankingWebsiteName": "Clearstream Banking S.A.",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["closebrothers"],
-            "bankingWebsiteName": "Close Brothers",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["cbonline"],
-            "bankingWebsiteName": "Clydesdale Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["commerzbank"],
-            "bankingWebsiteName": "Commerzbank AG",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["rabobank"],
-            "bankingWebsiteName": "Cooperatieve Rabobank U.A.",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["coutts"],
-            "bankingWebsiteName": "Coutts & Company",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["credit-suisse"],
-            "bankingWebsiteName": "Credit Suisse (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["crownagentsbank"],
-            "bankingWebsiteName": "Crown Agents Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["cynergybank"],
-            "bankingWebsiteName": "Cynergy Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["danskebank"],
-            "bankingWebsiteName": "Danske Bank A/S",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["dbs"],
-            "bankingWebsiteName": "DBS Bank Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["db"],
-            "bankingWebsiteName": "Deutsche Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["eabplc"],
-            "bankingWebsiteName": "Europe Arab Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["fbnbank"],
-            "bankingWebsiteName": "FBN Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["fcebank"],
-            "bankingWebsiteName": "FCE Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["gatehousebank"],
-            "bankingWebsiteName": "Gatehouse Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["ghanabank"],
-            "bankingWebsiteName": "Ghana International Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["goldmansachs"],
-            "bankingWebsiteName": "Goldman Sachs International Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["gtbankuk"],
-            "bankingWebsiteName": "Guaranty Trust Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["gib"],
-            "bankingWebsiteName": "Gulf International Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hblbankuk", "habibbank"],
-            "bankingWebsiteName": "Habib Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["halifax"],
-            "bankingWebsiteName": "Halifax",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["htb"],
-            "bankingWebsiteName": "Hampshire Trust Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hib"],
-            "bankingWebsiteName": "Havin Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hdfcbank"],
-            "bankingWebsiteName": "HDFC BANK UK",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hsbc"],
-            "bankingWebsiteName": "HSBC Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["hsbcprivatebank"],
-            "bankingWebsiteName": "HSBC Private Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["icbclondon"],
-            "bankingWebsiteName": "ICBC",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["icbcstandardbank"],
-            "bankingWebsiteName": "ICBC Standard Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["icicibank"],
-            "bankingWebsiteName": "ICICI Bank UK",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["investec"],
-            "bankingWebsiteName": "Investec Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["itau"],
-            "bankingWebsiteName": "Itau BBA International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bfcbank"],
-            "bankingWebsiteName": "iFAST Global Bank Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["jordanbank"],
-            "bankingWebsiteName": "Jordan International Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["jpmorgan"],
-            "bankingWebsiteName": "J.P. Morgan Europe",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["kingdom"],
-            "bankingWebsiteName": "Kingdom Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["kbstar"],
-            "bankingWebsiteName": "Kookmin Bank International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["lhv"],
-            "bankingWebsiteName": "LHV Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["lloydsbank"],
-            "bankingWebsiteName": "Lloyds Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["macquarie"],
-            "bankingWebsiteName": "Macquarie Bank International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["masthaven"],
-            "bankingWebsiteName": "Masthaven Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["mellibank"],
-            "bankingWebsiteName": "Melli Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["metrobankonline"],
-            "bankingWebsiteName": "Metro Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["mizuhogroup"],
-            "bankingWebsiteName": "Mizuho International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["monzo"],
-            "bankingWebsiteName": "Monzo Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["morganstanley"],
-            "bankingWebsiteName": "Morgan Stanley Bank International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["bank.marksandspencer"],
-            "bankingWebsiteName": "M&S Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["nbeuk"],
-            "bankingWebsiteName": "National Bank of Egypt (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["nbk"],
-            "bankingWebsiteName": "National Bank of Kuwait",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["natwest"],
-            "bankingWebsiteName": "National Westminster Bank (NatWest)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["edmond-de-rothschild"],
-            "bankingWebsiteName": "N M Rothschild & Sons",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["nomura"],
-            "bankingWebsiteName": "Nomura Bank International",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["northerntrust"],
-            "bankingWebsiteName": "Northern Trust Global Services",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["oaknorth"],
-            "bankingWebsiteName": "OakNorth Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["osb"],
-            "bankingWebsiteName": "OneSavings Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["paragonbank"],
-            "bankingWebsiteName": "Paragon Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["persiabank"],
-            "bankingWebsiteName": "Persia International Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["pnb"],
-            "bankingWebsiteName": "Philippines National Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["postoffice"],
-            "bankingWebsiteName": "Post Office",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["pnbint"],
-            "bankingWebsiteName": "Punjab National Bank (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["qib-uk"],
-            "bankingWebsiteName": "QIB",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["rathbones"],
-            "bankingWebsiteName": "Rathbone Investment Management",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["rbc"],
-            "bankingWebsiteName": "RBC Europe Limited",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["redwoodbank"],
-            "bankingWebsiteName": "Redwood Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["reliancebankltd"],
-            "bankingWebsiteName": "Reliance Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["rbs"],
-            "bankingWebsiteName": "Royal Bank of Scotland",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["sainsburysbank"],
-            "bankingWebsiteName": "Sainsbury’s Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["santander"],
-            "bankingWebsiteName": "Santander",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["schroders"],
-            "bankingWebsiteName": "Schroder & Co",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["scotiabank"],
-            "bankingWebsiteName": "Scotiabank Europe",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["securetrustbank"],
-            "bankingWebsiteName": "Secure Trust Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["kleinworthambros"],
-            "bankingWebsiteName": "SG Hambros Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["shawbrook"],
-            "bankingWebsiteName": "Shawbrook Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["sc"],
-            "bankingWebsiteName": "Standard Chartered Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["starlingbank"],
-            "bankingWebsiteName": "Starling Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["tandem"],
-            "bankingWebsiteName": "Tandem Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["td"],
-            "bankingWebsiteName": "TD Bank Europe",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["tescobank"],
-            "bankingWebsiteName": "Tesco Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["co-operativebank"],
-            "bankingWebsiteName": "The Co-operative Bank plc",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["triodos"],
-            "bankingWebsiteName": "Triodos Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["tsb"],
-            "bankingWebsiteName": "TSB",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["turkishbank"],
-            "bankingWebsiteName": "Turkish Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["ubs"],
-            "bankingWebsiteName": "UBS UK",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["digital.ulsterbank"],
-            "bankingWebsiteName": "Ulster Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["unionbankofindia"],
-            "bankingWebsiteName": "Union Bank of India (UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["ubluk"],
-            "bankingWebsiteName": "United National Bank (UBL UK)",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["utbank"],
-            "bankingWebsiteName": "United Trust Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["unity"],
-            "bankingWebsiteName": "Unity Trust Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["vanquis"],
-            "bankingWebsiteName": "Vanquis Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["uk.virginmoney"],
-            "bankingWebsiteName": "Virgin Money",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["weatherbys"],
-            "bankingWebsiteName": "Weatherbys Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["wesleyan"],
-            "bankingWebsiteName": "Wesleyan Assurance Society",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["westpac"],
-            "bankingWebsiteName": "Westpac Europe",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["wyelandsbank"],
-            "bankingWebsiteName": "Wyelands Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["secure.ybonline"],
-            "bankingWebsiteName": "Yorkshire Bank",
-            "bankingWebsiteContact": ""
-        },
-        {
-            "bankingWebsiteURLs": ["zenith-bank"],
-            "bankingWebsiteName": "Zenith Bank (UK)",
-            "bankingWebsiteContact": ""
+            "bankDomainName": ["uk.virginmoney","virginmoney"],
+            "bankName": "Virgin Money (Clydesdale Bank and Yorkshire Bank)",
+            "bankContactPage": "https://uk.virginmoney.com/contact/"
         }
     ]
 }

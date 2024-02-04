@@ -1,6 +1,6 @@
 {
     "name": "Cyber Security Tool",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Cyber Security Tool",
     "manifest_version": 3,
     "author": "Jake Stainthorpe | K2122623",
@@ -50,6 +50,7 @@
             "matches": ["<all_urls>"],
             "js": [
                 "scripts/background/paymentInfoDetection.js",
+                "scripts/interface/bankingWebsiteDetected.js",
                 "scripts/background/advertisementBlocking.js"
             ]
         }

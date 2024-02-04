@@ -1,5 +1,5 @@
 const tabInfo = {};
-const exclusionList = ["vimeo.com","youtube.com","google.com"] // Exclusion list, to avoid pop-up media in websites causing additional API Calls //
+const exclusionList = ["vimeo.com","youtube.com","google.com","msn.com","bing.com"] // Exclusion list, to avoid pop-up media in websites causing additional API Calls //
 let lastNavURL = null;
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
@@ -39,11 +39,6 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
             }
         }
     });
-
-    console.log(url);
-    if (url.includes("google.com")) {
-        chrome.tabs.remove(tabId);
-    }
 });
 
 /* Query API 1 - Google Web Risk API */
@@ -190,6 +185,21 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
                         chrome.tabs.update(tabId, { url: url });
                     });
+                    fetch(chrome.runtime.getURL('../config/bankingWebsites.json'))
+                        .then(response => response.json())
+                        .then(data => {
+                            const bankingWebsites = data.bankingWebsites; // Access the array property
+                            console.log('Parsed bankingWebsites:', bankingWebsites);
+                            const parsedURL = new URL(url);
+                            const domainName = parsedURL.hostname.replace(/^(www\.)?(.*?)\..*?$/, '$2');
+
+                            if (bankingWebsites.some(website => website.bankDomainName.includes(domainName))) {
+                                bankingWebsiteDetected(domainName);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error querying bankingWebsites.json:', error);
+                        });
                 }
                 else {
                     let cats = new Set();
@@ -320,3 +330,15 @@ setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
 
 // Initial fetch on extension install or browser startup
 chrome.runtime.onInstalled.addListener(updateEasyList);
+
+/* Banking Website */
+function bankingWebsiteDetected(domainName) {
+    chrome.tabs.query( { active: true, currentWindow: true }, function (tabs) {
+        tab = tabs[0];
+    });
+
+    chrome.tabs.create({ url: chrome.runtime.getURL("../pages/bankingWebsiteDetected.html?domainName="+domainName) }, function (createdTab) {
+        newTab = createdTab;
+    });
+
+}

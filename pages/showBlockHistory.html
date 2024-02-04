@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Payment Warning</title>
-  <link rel="stylesheet" href="../styles/styles.css">
-</head>
-<body>
-  <div class="blockedPageTopSection">
-    <img src="../images/logo.png">
-    <h2>Past Blocks</h2>
-  </div>
-  <div class="blockHistoryPage">
-    <h1> Block History </h1>
-    <table id="blockListTable">
-      <thead id="blockListHeader">
-          <tr>
-              <th id="blockListTableURL">URL</th>
-              <th id="blockListTableCategories">Block Categories</th>
-              <th id="blockListTableTimestamp">Date and Time</th>
-          </tr>
-      </thead>
-      <tbody id="blockListBody"></tbody>
-  </table>
-  </div>
-  <script src="../scripts/blockHistory.js"></script>
-</body>
+    <head>
+        <title> Block History - Cyber Security Tool </title>
+        <!-- Metadata -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Page to display Website Block History and reasons.">
+        <meta name="author" content="Jake Stainthorpe">
+        
+        <!-- Stylesheet and Scripts -->
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+        <div class="blockedPageTopSection">
+            <img src="../images/logo.png">
+            <h2>Past Blocks</h2>
+        </div>
+        <div class="blockHistoryPage">
+            <h1> Block History </h1>
+            <table id="blockListTable">
+                <thead id="blockListHeader">
+                    <tr>
+                        <th id="blockListTableURL">URL</th>
+                        <th id="blockListTableCategories">Block Categories</th>
+                        <th id="blockListTableTimestamp">Date and Time</th>
+                    </tr>
+                </thead>
+                <tbody id="blockListBody"></tbody>
+            </table>
+        </div>
+        <script src="../scripts/blockHistory.js"></script>
+    </body>
 </html>
