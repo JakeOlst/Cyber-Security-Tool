@@ -3,8 +3,6 @@
 */
 
 let easyList = [];
-
-// Function to block ads on the page based on the locally stored EasyList
 function blockAdsOnPage() {
     const elements = document.querySelectorAll('div, img, script, iframe, [src]');
     elements.forEach(element => {

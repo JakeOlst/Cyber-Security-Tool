@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         blockURL.textContent = blockedFromURL;
     }
 
-
     const continueButton = document.getElementById('nextPage');
     continueButton.addEventListener('click', function() {
         const redirectPageURL = 'blockedConfirmationPage.html?blockedFromURL='+blockedFromURL+'&blockCategories='+params.get('blockCategories');
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
     returnToSearch.addEventListener('click', function() {
         history.back();
     });
-
 
     fetch('../../config/threatTypes.json')
     .then(response => response.json())

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var checkbox = document.getElementById('confirmationMessage');
-
     var additionalContent = document.getElementById('checkboxHiddenButtons');
 
     checkbox.addEventListener('change', function () {
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 cell2.textContent = category.description;
             }
         )
-
     })
     .catch(error => {
         console.error('There was an error fetching the threatTypes.json file. Details:',error);
