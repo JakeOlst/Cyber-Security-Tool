@@ -51,7 +51,7 @@ function queryGoogleWebRiskAPI(url, details) {
         'SOCIAL_ENGINEERING',
         'UNWANTED_SOFTWARE',
         'SOCIAL_ENGINEERING_EXTENDED_COVERAGE'
-    ].join('&threatTypes=');
+    ].join(',');
 
     const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=${threatTypes}&uri=${encodedUrl}&key=${apiKey}`;
 
