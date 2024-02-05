@@ -1,3 +1,4 @@
+const corsProxy = "https://corsproxy.io/?"
 const tabInfo = {};
 const exclusionList = ["vimeo.com","youtube.com","google.com","msn.com","bing.com"] // Exclusion list, to avoid pop-up media in websites causing additional API Calls //
 let lastNavURL = null;
@@ -6,11 +7,11 @@ let lastNavURL = null;
 // Lowering for testing.
 const urlScanMaxScore = 30;
 
-chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
+browser.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
     const tabId = webURL.tabId;
 
-    chrome.storage.local.get('lastNavURL', function(getLastURL) {
+    browser.storage.local.get('lastNavURL', function(getLastURL) {
         lastNavURL = getLastURL.lastNavURL || null;
         if (lastNavURL != null) {
             console.log('Last Navigated URL:', lastNavURL);
@@ -32,8 +33,8 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
                 };
 
                 tabInfo[tabId].navigated = false;
-                const redirectURL = chrome.runtime.getURL('../pages/querying.html');
-                chrome.tabs.update(tabId, { url: redirectURL });
+                const redirectURL = browser.runtime.getURL('../pages/querying.html');
+                browser.tabs.update(tabId, { url: redirectURL });
                 queryGoogleWebRiskAPI(url, webURL)
                 queryURLScanIOSubmit(url, webURL);
             }
@@ -43,30 +44,35 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
 
 /* Query API 1 - Google Web Risk API */
 function queryGoogleWebRiskAPI(url, details) {
-    const apiKey = '&key='+'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
-    const encodedUrl = '&uri='+encodeURIComponent(url);
-    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&
-        threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE`;
+    const apiKey = 'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
+    const encodedUrl = encodeURIComponent(url);
+    const threatTypes = [
+        'MALWARE',
+        'SOCIAL_ENGINEERING',
+        'UNWANTED_SOFTWARE',
+        'SOCIAL_ENGINEERING_EXTENDED_COVERAGE'
+    ].join('&threatTypes=');
 
-    fetch((apiEndpoint+encodedUrl+apiKey))
-    .then(response => response.json())
-    .then(data => {
-        console.log("Submission to Google Web Risk API Successful. Response:",data);
-        if (data.threat) {
-            const threats = data.threat.threatTypes.join(",");
-            tabInfo[details.tabId].googleSafeResult = false;
-            tabInfo[details.tabId].googleSafeCategories = threats;
-            navigateBasedOnAPIResults(details, url, false);
-        }
-        else {
-            tabInfo[details.tabId].googleSafeResult = true
-            console.log(tabInfo[details.tabId].googleSafeResult);
-            navigateBasedOnAPIResults(details, url, true);
-        }
-    })
-    .catch(error => {
-        console.error('Error querying Google Web Risk API:', error);
-    });
+    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=${threatTypes}&uri=${encodedUrl}&key=${apiKey}`;
+
+    fetch(corsProxy+apiEndpoint)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Submission to Google Web Risk API Successful. Response:", data);
+            if (data.threat) {
+                const threats = data.threat.threatTypes.join(",");
+                tabInfo[details.tabId].googleSafeResult = false;
+                tabInfo[details.tabId].googleSafeCategories = threats;
+                navigateBasedOnAPIResults(details, url, false);
+            } else {
+                tabInfo[details.tabId].googleSafeResult = true
+                console.log(tabInfo[details.tabId].googleSafeResult);
+                navigateBasedOnAPIResults(details, url, true);
+            }
+        })
+        .catch(error => {
+            console.error('Error querying Google Web Risk API:', error);
+        });
 }
 
 /* Query API 2 - URL Scan IO */
@@ -79,7 +85,7 @@ function queryURLScanIOSubmit(url,details) {
         visibility: 'public',
     }
 
-    fetch((apiEndpoint), {
+    fetch((corsProxy+apiEndpoint), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -113,12 +119,13 @@ function queryURLScanIOResult(uuid,details)
 
     function getResults(uuid) {
 
-        fetch((apiEndpoint), {
+        fetch((corsProxy+apiEndpoint), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'API-Key': apiKey,
             },
+            mode: 'cors'
         })
 
         .then(response => response.json())
@@ -182,10 +189,10 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                 lastNavURL = url;
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
-                    chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        chrome.tabs.update(tabId, { url: url });
+                    browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        browser.tabs.update(tabId, { url: url });
                     });
-                    fetch(chrome.runtime.getURL('../config/bankingWebsites.json'))
+                    fetch(browser.runtime.getURL('../config/bankingWebsites.json'))
                         .then(response => response.json())
                         .then(data => {
                             const bankingWebsites = data.bankingWebsites; // Access the array property
@@ -217,14 +224,14 @@ function navigateBasedOnAPIResults(details, url, isSafe) {
                     let categories = Array.from(cats).join(',');
                     console.log("Website detected as unsafe. Redirecting...");
                     storeBlockDetails(tabId, url, categories);
-                    const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
+                    const redirectURL = browser.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
                      + url + '&blockCategories='+categories);
 
-                    chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        chrome.tabs.update(tabId, { url: redirectURL });
+                    browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        browser.tabs.update(tabId, { url: redirectURL });
                     });
     
-                    chrome.storage.local.get('lastNavURL', function(getLastURL) {
+                    browser.storage.local.get('lastNavURL', function(getLastURL) {
                         lastNavURL = getLastURL.lastNavURL || null;
                         if (lastNavURL != null) {
                             console.log('Last Navigated URL:', lastNavURL);
@@ -257,10 +264,10 @@ function storeBlockDetails(tabId, blockedURL, blockCategories) {
         timestamp: new Date().toISOString(),
     };
 
-    chrome.storage.local.get({blockHistory: [] }, function(result) {
+    browser.storage.local.get({blockHistory: [] }, function(result) {
         const blockHistory = result.blockHistory || [];
         blockHistory.push(blockDetails);
-        chrome.storage.local.set({ blockHistory});
+        browser.storage.local.set({ blockHistory});
     });
     //console.log("Stored Block with details: "+blockDetails);
 }
@@ -273,29 +280,29 @@ function storeBlockDetails(tabId, blockedURL, blockCategories) {
 let tab;
 let newTab;
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     //console.log("Message Received: "+message);
 
 
     if (message.type === "payment-detected") {
-        chrome.tabs.query( { active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query( { active: true, currentWindow: true }, function (tabs) {
               tab = tabs[0];
         });
-        chrome.tabs.create({ url: chrome.runtime.getURL("pages/paymentInfoPopup.html") }, function (createdTab) {
+        browser.tabs.create({ url: browser.runtime.getURL("pages/paymentInfoPopup.html") }, function (createdTab) {
             newTab = createdTab;
         });
     }
     else if (message.type === "close-popup") {
         console.log("Closed popup tab with ID: " + newTab.id);
-        chrome.tabs.remove(newTab.id);
+        browser.tabs.remove(newTab.id);
         newTab = null;
     }
     else if (message.type === "close-both-tabs") {
         console.log("Closed popup tab with ID: " + newTab.id);
-        chrome.tabs.remove(newTab.id);
+        browser.tabs.remove(newTab.id);
         newTab = null;
         console.log("Closed popup tab with ID: " + tab.id);
-        chrome.tabs.remove(tab.id);
+        browser.tabs.remove(tab.id);
         tab = null;
     }
 })
@@ -310,7 +317,7 @@ const updateIntervalHours = 24;
 
 function updateEasyList() {
     console.log('Update Time! Fetching EasyList...');
-    fetch(easyListURL)
+    fetch(corsProxy+easyListURL)
         .then(response => response.text())
         .then(easyListText => {
             easyList = easyListText.split('\n')
@@ -318,7 +325,7 @@ function updateEasyList() {
                 .map(line => line.trim().replace(/^\|\|/, '').replace(/\^$/, ''));
             easyList.push("googleadservices.com/pagead/");
             console.log('EasyList content:', easyList);
-            chrome.storage.local.set({ 'easyList': easyList }, function() {
+            browser.storage.local.set({ 'easyList': easyList }, function() {
             });
         })
         .catch(error => console.error('Error fetching EasyList:', error));
@@ -329,15 +336,15 @@ function updateEasyList() {
 setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
 
 // Initial fetch on extension install or browser startup
-chrome.runtime.onInstalled.addListener(updateEasyList);
+browser.runtime.onInstalled.addListener(updateEasyList);
 
 /* Banking Website */
 function bankingWebsiteDetected(domainName) {
-    chrome.tabs.query( { active: true, currentWindow: true }, function (tabs) {
+    browser.tabs.query( { active: true, currentWindow: true }, function (tabs) {
         tab = tabs[0];
     });
 
-    chrome.tabs.create({ url: chrome.runtime.getURL("../pages/bankingWebsiteDetected.html?domainName="+domainName) }, function (createdTab) {
+    browser.tabs.create({ url: browser.runtime.getURL("../pages/bankingWebsiteDetected.html?domainName="+domainName) }, function (createdTab) {
         newTab = createdTab;
     });
 

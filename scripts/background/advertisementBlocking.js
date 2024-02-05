@@ -16,7 +16,7 @@ function blockAdsOnPage() {
     });
 }
 
-chrome.storage.local.get('easyList', (result) => {
+browser.storage.local.get('easyList', (result) => {
     //console.log("Result: "+result.easyList);
     easyList = result.easyList;
     blockAdsOnPage();

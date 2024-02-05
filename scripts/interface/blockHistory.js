@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(data => {
         const threatDetails = data.typesOfThreat;
-        chrome.storage.local.get({ blockHistory: [] }, function (result) {
+        browser.storage.local.get({ blockHistory: [] }, function (result) {
             const blockHistory = result.blockHistory;
             const blockListTable = document.getElementById('blockListTable');
             const blockListBody = document.getElementById('blockListBody'); 

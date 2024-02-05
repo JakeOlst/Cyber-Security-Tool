@@ -12,7 +12,7 @@ let shouldBlockProceed = false;
 function checkNumberAgainstRegex(input) {
   if (ukCreditCardRegex.test(input)) {
     console.log("Credit card detected. Sending message.");
-    chrome.runtime.sendMessage({
+    browser.runtime.sendMessage({
       type: "payment-detected"
     });
   }
