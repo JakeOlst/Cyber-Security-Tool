@@ -14,7 +14,8 @@
         "webRequest",
         "activeTab",
         "storage",
-        "tabs"
+        "tabs",
+        "webRequestBlocking"
     ],
     "action": {
         "default_popup": "pages/popup.html",

@@ -44,35 +44,29 @@ browser.webNavigation.onBeforeNavigate.addListener(function (webURL) {
 
 /* Query API 1 - Google Web Risk API */
 function queryGoogleWebRiskAPI(url, details) {
-    const apiKey = 'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
-    const encodedUrl = encodeURIComponent(url);
-    const threatTypes = [
-        'MALWARE',
-        'SOCIAL_ENGINEERING',
-        'UNWANTED_SOFTWARE',
-        'SOCIAL_ENGINEERING_EXTENDED_COVERAGE'
-    ].join(',');
+    const apiKey = '&key='+'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
+    const encodedUrl = '&uri='+encodeURIComponent(url);
+    const apiEndpoint = 'https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE'
 
-    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=${threatTypes}&uri=${encodedUrl}&key=${apiKey}`;
-
-    fetch(corsProxy+apiEndpoint)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Submission to Google Web Risk API Successful. Response:", data);
-            if (data.threat) {
-                const threats = data.threat.threatTypes.join(",");
-                tabInfo[details.tabId].googleSafeResult = false;
-                tabInfo[details.tabId].googleSafeCategories = threats;
-                navigateBasedOnAPIResults(details, url, false);
-            } else {
-                tabInfo[details.tabId].googleSafeResult = true
-                console.log(tabInfo[details.tabId].googleSafeResult);
-                navigateBasedOnAPIResults(details, url, true);
-            }
-        })
-        .catch(error => {
-            console.error('Error querying Google Web Risk API:', error);
-        });
+    fetch((apiEndpoint+encodedUrl+apiKey))
+    .then(response => response.json())
+    .then(data => {
+        console.log("Submission to Google Web Risk API Successful. Response:",data);
+        if (data.threat) {
+            const threats = data.threat.threatTypes.join(",");
+            tabInfo[details.tabId].googleSafeResult = false;
+            tabInfo[details.tabId].googleSafeCategories = threats;
+            navigateBasedOnAPIResults(details, url, false);
+        }
+        else {
+            tabInfo[details.tabId].googleSafeResult = true
+            console.log(tabInfo[details.tabId].googleSafeResult);
+            navigateBasedOnAPIResults(details, url, true);
+        }
+    })
+    .catch(error => {
+        console.error('Error querying Google Web Risk API:', error);
+    });
 }
 
 /* Query API 2 - URL Scan IO */
