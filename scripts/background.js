@@ -45,8 +45,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
 function queryGoogleWebRiskAPI(url, details) {
     const apiKey = '&key='+'AIzaSyArDRynK0K_QY6F8LjVl_Z6Qqvx1Otry6g';
     const encodedUrl = '&uri='+encodeURIComponent(url);
-    const apiEndpoint = `https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&
-        threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE`;
+    const apiEndpoint = 'https://webrisk.googleapis.com/v1/uris:search?threatTypes=MALWARE&threatTypes=SOCIAL_ENGINEERING&threatTypes=UNWANTED_SOFTWARE&threatTypes=SOCIAL_ENGINEERING_EXTENDED_COVERAGE'
 
     fetch((apiEndpoint+encodedUrl+apiKey))
     .then(response => response.json())
@@ -328,7 +327,7 @@ function updateEasyList() {
 // Set interval to update EasyList
 setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
 
-// Initial fetch on extension install or browser startup
+// Initial fetch on extension install or chrome startup
 chrome.runtime.onInstalled.addListener(updateEasyList);
 
 /* Banking Website */
