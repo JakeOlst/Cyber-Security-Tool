@@ -254,6 +254,31 @@ body {
     text-align: center;
 }
 
+.midText {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.midText p {
+    text-align: center;
+}
+
+.midText li, p {
+    padding-top: 5px;
+}
+
+.browserTitle {
+    font-size: 24px;
+    padding-left: 5%;
+    text-decoration: solid;
+}
+
+.browserInstructions {
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+
 /*
     CSS for the 13 'learnAbout' article pages.
 */

@@ -3,13 +3,13 @@ import { navigateBasedOnAPIResults } from "./resultNavigationModule.js";
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
 const urlScanMaxScore = -30;
+const maxRetries = 8;
+const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 
 function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
 {
-    const maxRetries = 5;
     let retries = 0;
     const apiEndpoint = 'https://urlscan.io/api/v1/result/'+uuid+'/';
-    const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 
     getResults(uuid);
 
@@ -47,9 +47,9 @@ function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
                 else if ((data.status == 404) || (data.status == 200 && !data.verdicts)) {
                     console.log("retries:"+retries);
                     if (retries <= maxRetries) {
-                        console.log('URLScan.IO Results Page not yet ready. Retrying in 3 seconds.')
+                        console.log("URLScan.IO Results Page not yet ready. Retrying in 2 seconds."+(maxRetries-retries)+" retries remaining.")
                         retries++;
-                        setTimeout(() => getResults(uuid), 3000)
+                        setTimeout(() => getResults(uuid), 2000)
                     }
                     else {
                         throw new Error('Error querying URLScan.IO API: Max Retries attempted.');

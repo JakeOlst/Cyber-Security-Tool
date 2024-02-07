@@ -1,8 +1,11 @@
 import { storeBlockDetails } from "./storeBlockDetailsModule.js";
+const maxRetries = 8;
 
 function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
     const tabId = details.tabId;
     const googleResult = tabInfo[details.tabId].googleSafeResult !== false;
+
+    let retries = 0;
 
     getResults();
 
@@ -73,8 +76,14 @@ function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
                 delete tabInfo[details.tabId];
             }
             else {
-                console.log("Waiting for response from URLScan.io. Timeout for 1.5 seconds.");
-                setTimeout(getResults, 1500);
+                    if (retries <= maxRetries) {
+                        console.log("Waiting for response from URLScan.IO. Timeout for 2 seconds. "+(maxRetries-retries)+" retries remaining.");
+                        retries++;
+                        setTimeout(getResults, 2000);
+                    }
+                    else {
+                        throw new Error('Error waiting for URLScan.IO: Max Retries attempted.');
+                    }
             }
         }
 
