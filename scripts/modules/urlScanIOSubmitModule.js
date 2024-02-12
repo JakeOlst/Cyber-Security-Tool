@@ -30,14 +30,13 @@ function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
                 navigateBasedOnAPIResults(details, url, true, tabInfo, lastNavURL)
             }
             else if (data.status == 400 && data.message == "DNS Error - Could not resolve domain") {
-                console.log("Scan prevented by API (Domain does not Exist");
+                console.log("Scan prevented by API (Domain does not Exist)");
                 const redirectURL = chrome.runtime.getURL('../pages/unknownWebsite.html?blockedFromURL='+ url);
 
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
                         chrome.tabs.update(details.tabId, { url: redirectURL });
                     });
             }
-            
         }
     })
     .catch(error => {
