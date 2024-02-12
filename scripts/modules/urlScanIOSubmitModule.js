@@ -37,6 +37,10 @@ function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
                         chrome.tabs.update(details.tabId, { url: redirectURL });
                     });
             }
+            else {
+                console.log("Error: Retrying the Scan...");
+                queryURLScanIOSubmit(url, details, tabInfo, lastNavURL);
+            }
         }
     })
     .catch(error => {
