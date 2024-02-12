@@ -1,6 +1,6 @@
 {
     "name": "Cyber Security Tool",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "description": "Cyber Security Tool",
     "manifest_version": 3,
     "author": "Jake Stainthorpe | K2122623",
@@ -17,16 +17,19 @@
         "tabs",
         "webRequestBlocking"
     ],
+
     "action": {
         "default_popup": "pages/popup.html",
         "default_title": "Cyber Security Tool"
     },
+
     "icons": {
         "16": "images/logo16.png",
         "32": "images/logo32.png",
         "48": "images/logo48.png",
         "128": "images/logo128.png"
     },
+
     "web_accessible_resources": [
         {
             "resources": [
@@ -43,18 +46,21 @@
             "extension_ids": ["*"]
         }
     ],
+
     "background": {
         "scripts": [
             "scripts/background.js"
-        ]
+        ],
+        "type": "module"
     },
+
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": [
-                "scripts/background/paymentInfoDetection.js",
-                "scripts/interface/bankingWebsiteDetected.js",
-                "scripts/background/advertisementBlocking.js"
+                "scripts/content/paymentInfoDetection.js",
+                "scripts/content/bankingWebsiteDetected.js",
+                "scripts/content/advertisementblocking.js"   
             ]
         }
     ]
