@@ -5,7 +5,7 @@
         <!-- Metadata -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Pop-up Page for Payment Info Detected.">
+        <meta name="description" content="Settings Page.">
         <meta name="author" content="Jake Stainthorpe">
         
         <!-- Stylesheet and Scripts -->
@@ -17,10 +17,11 @@
             <h2> Settings </h2>
         </div>
         <div class="settings">
-            <div class="setting">
-                <p> Disable Ad Blocking </p>
-                <button>Disable</button>
-            </div>
+            <label>
+                <input type="checkbox" id="adBlockToggle">
+                Enable Ad Blocking
+            </label>
+            <script src="settings.js"></script>
         </div>
     </body>
 </html>
