@@ -537,3 +537,18 @@ body {
 #blockListBody {
     font-size: 17px;
 }
+
+/*
+    CSS for 'reportIssue.html' page.
+*/
+
+.reportIssueMenu {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+.reportIssueMenu p {
+    font-size: 18px;
+    text-align: center;
+}
