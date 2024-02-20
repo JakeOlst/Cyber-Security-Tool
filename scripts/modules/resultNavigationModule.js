@@ -58,19 +58,7 @@ function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
                     const redirectURL = chrome.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
                      + url + '&blockCategories='+categories);
 
-                    chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        chrome.tabs.update(tabId, { url: redirectURL });
-                    });
-    
-                    chrome.storage.local.get('lastNavURL', function(getLastURL) {
-                        lastNavURL = getLastURL.lastNavURL || null;
-                        if (lastNavURL != null) {
-                            console.log('Last Navigated URL:', lastNavURL);
-                        }
-                        else {
-                            console.log('Last Nav URL not found in storage.');
-                        }
-                    });
+                     chrome.tabs.update(tabId, { url: redirectURL });
                 }
 
                 delete tabInfo[details.tabId];

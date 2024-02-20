@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const continueButton = document.getElementById('continueToWebsite');
     continueButton.addEventListener('click', function() {
-        if (!blockedFromURL.startsWith("https://") && !blockedFromURL.startsWith("https://")) {
+        chrome.storage.local.set({ 'lastNavURL': blockedFromURL }, function () {});
+        if (!blockedFromURL.startsWith("https://") && !blockedFromURL.startsWith("http://")) {
             window.location.href = "https://"+blockedFromURL;
         }
         else {
