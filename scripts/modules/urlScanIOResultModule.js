@@ -30,7 +30,7 @@ function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
                     if (data.verdicts.urlscan.score > urlScanMaxScore) {
                         tabInfo[details.tabId].urlScanSafeResult = false;
                         let categoriesArr = data.verdicts.urlscan.categories;
-                        let categories = "NEGATIVE_REPUTATION_SCORE,PHISHING";
+                        let categories = "NEGATIVE_REPUTATION_SCORE";
                         while (categoriesArr.length > 0) {
                             categories = categories+","+categoriesArr.pop();
                         }
