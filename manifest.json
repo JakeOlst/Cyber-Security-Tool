@@ -52,7 +52,6 @@
             "matches": ["<all_urls>"],
             "js": [
                 "scripts/content/paymentInfoDetection.js",
-                "scripts/content/bankingWebsiteDetected.js",
                 "scripts/content/advertisementblocking.js"            
             ]
         }

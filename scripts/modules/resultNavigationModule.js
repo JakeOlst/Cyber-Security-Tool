@@ -1,4 +1,6 @@
 import { storeBlockDetails } from "./storeBlockDetailsModule.js";
+import { bankingWebsiteDetected } from "../background.js";
+
 const maxRetries = 8;
 
 function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {

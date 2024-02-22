@@ -130,3 +130,7 @@ function bankingWebsiteDetected(domainName) {
     });
 
 }
+
+export {
+    bankingWebsiteDetected
+}; 
