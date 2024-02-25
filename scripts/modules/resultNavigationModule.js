@@ -23,6 +23,7 @@ function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
                     chrome.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        console.log("Last Nav URL: "+lastNavURL);
                         chrome.tabs.update(tabId, { url: url });
                     });
                     fetch(chrome.runtime.getURL('../config/bankingWebsites.json'))

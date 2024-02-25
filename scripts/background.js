@@ -10,9 +10,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const tabId = webURL.tabId;
 
     chrome.storage.local.get('lastNavURL', function(getLastURL) {
-        lastNavURL = getLastURL.lastNavURL || null;
-    
-        if (!url.startsWith(lastNavURL)) {
+        const lastNavURL = getLastURL.lastNavURL || null;
+
+        if (!lastNavURL || (!url.startsWith(lastNavURL) && !normalizeDomain(url).includes(normalizeDomain(lastNavURL)))) {
             // Restricts API calls to http/https websites (frame id 0) excluding URLs in the exclusion list.
             if ((url.startsWith("http") || url.startsWith("https")) && (webURL.frameId === 0) && (exclusionList.every(element => !url.includes(element)))) {
                 // Initiates the tab states
@@ -129,6 +129,18 @@ function bankingWebsiteDetected(domainName) {
         newTab = createdTab;
     });
 
+}
+
+function normalizeDomain(url) {
+    // Remove '.com' and '.co.uk' and normalize to lowercase
+    if (typeof url !== 'string' || url.trim() === '') {
+        return null; // If the input is not a string or is empty, return null
+    }
+    const hostnameMatch = url.match(/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/im);
+    if (hostnameMatch && hostnameMatch[1]) {
+        return hostnameMatch[1].replace(/\.com$|\.co\.uk$/, '').toLowerCase();
+    }
+    return null; // If the domain part cannot be extracted, return null
 }
 
 export {
