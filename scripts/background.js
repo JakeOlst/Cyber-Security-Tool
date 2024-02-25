@@ -92,32 +92,39 @@ browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
  * Background Ad Blocking Functionality.
  */
 
-let easyList = [];
-const easyListURL = 'https://easylist.to/easylist/easylist.txt';
+let adBlockList = [];
+const adBlockListURL = 'https://blocklistproject.github.io/Lists/ads.txt';
 const updateIntervalHours = 24;
 
-function updateEasyList() {
-    console.log('Update Time! Fetching EasyList...');
-    fetch(easyListURL)
+function updateAdBlockList() {
+    console.log('Update Time! Fetching Ad Block List...');
+    fetch(adBlockListURL)
         .then(response => response.text())
-        .then(easyListText => {
-            easyList = easyListText.split('\n')
-                .filter(line => line.startsWith('||') || line.startsWith('##'))
-                .map(line => line.trim().replace(/^\|\|/, '').replace(/\^$/, ''));
-            easyList.push("googleadservices.com/pagead/");
-            //console.log('EasyList content:', easyList);
-            browser.storage.local.set({ 'easyList': easyList }, function() {
+        .then(text => {
+            // Parse the ad block list to extract ad domains
+            const domains = text.split('\n')
+                .map(line => line.trim().split(' ')[1]) // Extract domain from each line
+                .filter(domain => domain !== ''); // Filter out empty lines
+
+            // Store the ad block list in extension storage
+            browser.storage.local.set({ 'adBlockList': domains }, function() {
+                console.log('Ad block list updated:', domains);
             });
         })
-        .catch(error => console.error('Error fetching EasyList:', error));
+        .catch(error => console.error('Error fetching ad block list:', error));
 }
 
+// Set interval to update ad block list
+setInterval(updateAdBlockList, updateIntervalHours * 60 * 60 * 1000);
 
-// Set interval to update EasyList
-setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
+// Initial Install - Sets 'Ad Blocking' to enabled; updates Ad Block List.
+browser.runtime.onInstalled.addListener(function() {
+    browser.storage.local.set({ 'adBlockingEnabled': true }, function() {
+        console.log('adBlockingEnabled set to true upon installation.');
+    });
 
-// Initial fetch on extension install or browser startup
-browser.runtime.onInstalled.addListener(updateEasyList);
+    updateAdBlockList();
+});
 
 /* Banking Website */
 function bankingWebsiteDetected(domainName) {
