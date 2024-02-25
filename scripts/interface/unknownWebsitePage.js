@@ -7,4 +7,3 @@ document.addEventListener('DOMContentLoaded', function() {
         blockURL.textContent = blockedFromURL;
     }
 });
-

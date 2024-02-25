@@ -1,29 +1,18 @@
 import { queryGoogleWebRiskAPI } from "./modules/googleWebRiskModule.js";
 import { queryURLScanIOSubmit } from "./modules/urlScanIOSubmitModule.js";
 
-const corsProxy = "https://corsproxy.io/?"
 const tabInfo = {};
 const exclusionList = ["vimeo.com","youtube.com","google.com","msn.com","bing.com"] // Exclusion list, to avoid pop-up media in websites causing additional API Calls //
 let lastNavURL = null;
-
-// The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
-// Lowering for testing.
-const urlScanMaxScore = 30;
 
 browser.webNavigation.onBeforeNavigate.addListener(function (webURL) {
     const url = webURL.url;
     const tabId = webURL.tabId;
 
     browser.storage.local.get('lastNavURL', function(getLastURL) {
-        lastNavURL = getLastURL.lastNavURL || null;
-        if (lastNavURL != null) {
-            console.log('Last Navigated URL:', lastNavURL);
-        }
-        else {
-            console.log('Last Nav URL not found in storage.');
-        }
-    
-        if (!url.startsWith(lastNavURL)) {
+        const lastNavURL = getLastURL.lastNavURL || null;
+
+        if (!lastNavURL || (!url.startsWith(lastNavURL) && !normalizeDomain(url).includes(normalizeDomain(lastNavURL)))) {
             // Restricts API calls to http/https websites (frame id 0) excluding URLs in the exclusion list.
             if ((url.startsWith("http") || url.startsWith("https")) && (webURL.frameId === 0) && (exclusionList.every(element => !url.includes(element)))) {
                 // Initiates the tab states
@@ -38,13 +27,12 @@ browser.webNavigation.onBeforeNavigate.addListener(function (webURL) {
                 tabInfo[tabId].navigated = false;
                 const redirectURL = browser.runtime.getURL('../pages/querying.html');
                 browser.tabs.update(tabId, { url: redirectURL });
-                queryGoogleWebRiskAPI(url, webURL)
-                queryURLScanIOSubmit(url, webURL);
+                queryGoogleWebRiskAPI(url, webURL, tabInfo, lastNavURL)
+                queryURLScanIOSubmit(url, webURL, tabInfo, lastNavURL);
             }
         }
     });
 });
-
 
 /*
  * Store Blocking Details
@@ -110,14 +98,14 @@ const updateIntervalHours = 24;
 
 function updateEasyList() {
     console.log('Update Time! Fetching EasyList...');
-    fetch(corsProxy+easyListURL)
+    fetch(easyListURL)
         .then(response => response.text())
         .then(easyListText => {
             easyList = easyListText.split('\n')
                 .filter(line => line.startsWith('||') || line.startsWith('##'))
                 .map(line => line.trim().replace(/^\|\|/, '').replace(/\^$/, ''));
             easyList.push("googleadservices.com/pagead/");
-            console.log('EasyList content:', easyList);
+            //console.log('EasyList content:', easyList);
             browser.storage.local.set({ 'easyList': easyList }, function() {
             });
         })
@@ -125,7 +113,7 @@ function updateEasyList() {
 }
 
 
-// Set interval to update the EasyList
+// Set interval to update EasyList
 setInterval(updateEasyList, updateIntervalHours * 60 * 60 * 1000);
 
 // Initial fetch on extension install or browser startup
@@ -142,3 +130,19 @@ function bankingWebsiteDetected(domainName) {
     });
 
 }
+
+function normalizeDomain(url) {
+    // Remove '.com' and '.co.uk' and normalize to lowercase
+    if (typeof url !== 'string' || url.trim() === '') {
+        return null; // If the input is not a string or is empty, return null
+    }
+    const hostnameMatch = url.match(/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/im);
+    if (hostnameMatch && hostnameMatch[1]) {
+        return hostnameMatch[1].replace(/\.com$|\.co\.uk$/, '').toLowerCase();
+    }
+    return null; // If the domain part cannot be extracted, return null
+}
+
+export {
+    bankingWebsiteDetected
+}; 

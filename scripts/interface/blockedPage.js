@@ -42,4 +42,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('There was an error fetching the threatTypes.json file. Details:',error);
     });
 });
-

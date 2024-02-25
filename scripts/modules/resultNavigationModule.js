@@ -1,4 +1,6 @@
 import { storeBlockDetails } from "./storeBlockDetailsModule.js";
+import { bankingWebsiteDetected } from "../background.js";
+
 const maxRetries = 8;
 
 function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
@@ -21,6 +23,7 @@ function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
                 if (googleResult && urlScanResult) {
                     console.log("Website detected as safe. Navigating...");
                     browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        console.log("Last Nav URL: "+lastNavURL);
                         browser.tabs.update(tabId, { url: url });
                     });
                     fetch(browser.runtime.getURL('../config/bankingWebsites.json'))
@@ -58,19 +61,7 @@ function navigateBasedOnAPIResults(details, url, isSafe, tabInfo, lastNavURL) {
                     const redirectURL = browser.runtime.getURL('../pages/blockedPage.html?blockedFromURL='
                      + url + '&blockCategories='+categories);
 
-                     browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                        browser.tabs.update(tabId, { url: redirectURL });
-                    });
-    
-                    browser.storage.local.get('lastNavURL', function(getLastURL) {
-                        lastNavURL = getLastURL.lastNavURL || null;
-                        if (lastNavURL != null) {
-                            console.log('Last Navigated URL:', lastNavURL);
-                        }
-                        else {
-                            console.log('Last Nav URL not found in storage.');
-                        }
-                    });
+                     browser.tabs.update(tabId, { url: redirectURL });
                 }
 
                 delete tabInfo[details.tabId];

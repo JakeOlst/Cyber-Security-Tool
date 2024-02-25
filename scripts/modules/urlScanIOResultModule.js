@@ -1,10 +1,8 @@
 import { navigateBasedOnAPIResults } from "./resultNavigationModule.js";
 
-const corsProxy = "https://corsproxy.io/?"
-
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMaxScore = -30;
+const urlScanMaxScore = 30;
 const maxRetries = 8;
 const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 
@@ -17,13 +15,12 @@ function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
 
     function getResults(uuid) {
 
-        fetch((corsProxy+apiEndpoint), {
+        fetch((apiEndpoint), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'API-Key': apiKey,
             },
-            mode: 'cors'
         })
             .then(response => response.json())
             .then(data => {
@@ -33,7 +30,7 @@ function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
                     if (data.verdicts.urlscan.score > urlScanMaxScore) {
                         tabInfo[details.tabId].urlScanSafeResult = false;
                         let categoriesArr = data.verdicts.urlscan.categories;
-                        let categories = "NEGATIVE_REPUTATION_SCORE,PHISHING";
+                        let categories = "NEGATIVE_REPUTATION_SCORE";
                         while (categoriesArr.length > 0) {
                             categories = categories+","+categoriesArr.pop();
                         }
@@ -47,7 +44,6 @@ function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
                         navigateBasedOnAPIResults(details, data.page.url, true, tabInfo, lastNavURL)
                     }
                 }
-
                 else if ((data.status == 404) || (data.status == 200 && !data.verdicts)) {
                     console.log("retries:"+retries);
                     if (retries <= maxRetries) {

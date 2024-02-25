@@ -1,8 +1,6 @@
 import { queryURLScanIOResult } from "./urlScanIOResultModule.js";
 import { navigateBasedOnAPIResults } from "./resultNavigationModule.js";
 
-const corsProxy = "https://corsproxy.io/?"
-
 function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
     const apiEndpoint = 'https://urlscan.io/api/v1/scan/';
     const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
@@ -11,7 +9,7 @@ function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
         visibility: 'public',
     }
 
-    fetch((corsProxy+apiEndpoint), {
+    fetch((apiEndpoint), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -19,7 +17,6 @@ function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
         },
         body: JSON.stringify(postData),
     })
-    
     .then(response => response.json())
     .then(data => {
         if (data.uuid) {
@@ -36,8 +33,8 @@ function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
                 console.log("Scan prevented by API (Domain does not Exist)");
                 const redirectURL = browser.runtime.getURL('../pages/unknownWebsite.html?blockedFromURL='+ url);
 
-                browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
-                    browser.tabs.update(details.tabId, { url: redirectURL });
+                    browser.storage.local.set({ 'lastNavURL': lastNavURL }, function () {
+                        browser.tabs.update(details.tabId, { url: redirectURL });
                     });
             }
             else {
