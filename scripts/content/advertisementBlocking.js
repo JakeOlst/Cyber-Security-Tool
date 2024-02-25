@@ -1,22 +1,26 @@
 /*
- * Ad Blocking Functionality using EasyList.
+ * Ad Blocking Functionality using Ad Block List.
 */
 
-let easyList = [];
+let adBlockList = [];
 
 function blockAdsOnPage() {
-    const elements = document.querySelectorAll('div, img, script, iframe, [src]');
+    console.log("Stage A");
+    const elements = document.querySelectorAll('*');
     elements.forEach(element => {
         const src = element.src || element.getAttribute('src');
-        if (src && easyList.some(domain => src.includes(domain))) {
+        if (src !== null) {
+            console.log(src);
+        }
+        if (src && adBlockList.some(domain => src.includes(domain))) {
+            console.log(" removed.");
             element.remove();
-            // console.log("Ad Removed.");
         }
     });
 }
 
-chrome.storage.local.get(['easyList', 'adBlockingEnabled'], (result) => {
-    const easyList = result.easyList || [];
+chrome.storage.local.get(['adBlockList', 'adBlockingEnabled'], (result) => {
+    adBlockList = result.adBlockList || [];
     const adBlockingEnabled = result.adBlockingEnabled || false;
 
     if (adBlockingEnabled) {
