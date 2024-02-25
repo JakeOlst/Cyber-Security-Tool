@@ -1,5 +1,15 @@
 # Cyber-Security-Tool
-Cyber Security Tool for Computer Science Final Year Project Implementation
+Cyber Security Tool for Computer Science Final Year Project
+
+**Background on Final Year Project**
+As a final-year computer science student at Kingston University, I am undertaking a Final Year Project (FYP). During this, I am working on a Cyber Security Tool through the format of a Browser Extension, which aims to assist elderly and vulnerable people with a safer experience in browsing and using the internet. To do so, some of the functionalities include:
+- Website Blocking to prevent users navigating to unsafe websites (vie Google WebRisk and URLScan.IO APIs).
+- Functionality to review past website blocks, for educational purposes.
+- Integrated User Education Articles, to allow the user to learn about security methods, along with cyber threats.
+- Advertisement Blocking.
+- Warning prompt when entering payment information (i.e. to encourage people to research the website before inputting payment information).
+- Warning prompts when accessing Online Banking websites (i.e. to avoid phone-based pressure scams).
+
 
 **Downloading and Adding Browser Extension**
 
@@ -55,3 +65,7 @@ To load the Browser Extension into Google Chrome or MS Edge, you can follow the 
 6. Press ‘Select Folder’.
 7. Under the new ‘Cyber Security Tool’ icon, press ‘Details’.
 8. Select ‘Pin to Toolbar’
+
+**Have any Questions and/or Concerns?**
+
+Please feel free to reach out at cstoolproject@gmail.com
