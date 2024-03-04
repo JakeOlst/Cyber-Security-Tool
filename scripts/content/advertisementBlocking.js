@@ -1,19 +1,22 @@
 /*
  * Ad Blocking Functionality using Ad Block List.
-*/
+ */
 
 let adBlockList = [];
 
 function blockAdsOnPage() {
-    console.log("Stage A");
-    const elements = document.querySelectorAll('*');
-    elements.forEach(element => {
+    const adElements = document.querySelectorAll('iframe, body, head, script, img, object, embed, video, audio, source, track, canvas, svg, a, math, link, section');
+
+    adElements.forEach(element => {
         const src = element.src || element.getAttribute('src');
-        if (src !== null) {
-            console.log(src);
-        }
-        if (src && adBlockList.some(domain => src.includes(domain))) {
-            console.log(" removed.");
+        if (src && adBlockList.some(domain => {
+            const srcURL = new URL(src);
+            const domainParts = domain.split('.');
+            const srcDomainParts = srcURL.hostname.split('.');
+            return srcDomainParts.length >= domainParts.length &&
+                   srcDomainParts.slice(-domainParts.length).join('.') === domain;
+        })) {
+            console.log("Ad Removed: " + src);
             element.remove();
         }
     });
