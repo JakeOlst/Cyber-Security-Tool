@@ -63,8 +63,6 @@ let newTab;
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     //console.log("Message Received: "+message);
-
-
     if (message.type === "payment-detected") {
         chrome.tabs.query( { active: true, currentWindow: true }, function (tabs) {
               tab = tabs[0];
@@ -74,17 +72,23 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         });
     }
     else if (message.type === "close-popup") {
-        console.log("Closed popup tab with ID: " + newTab.id);
-        chrome.tabs.remove(newTab.id);
-        newTab = null;
+        if (newTab) {
+            console.log("Closed popup tab with ID: " + newTab.id);
+            chrome.tabs.remove(newTab.id);
+            newTab = null;
+        }
     }
     else if (message.type === "close-both-tabs") {
-        console.log("Closed popup tab with ID: " + newTab.id);
-        chrome.tabs.remove(newTab.id);
-        newTab = null;
-        console.log("Closed popup tab with ID: " + tab.id);
-        chrome.tabs.remove(tab.id);
-        tab = null;
+        if (newTab) {
+            console.log("Closed popup tab with ID: " + newTab.id);
+            chrome.tabs.remove(newTab.id);
+            newTab = null;
+        }
+        if (tab) {
+            console.log("Closed popup tab with ID: " + tab.id);
+            chrome.tabs.remove(tab.id);
+            tab = null;
+        }
     }
 })
 
