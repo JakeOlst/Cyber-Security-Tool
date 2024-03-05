@@ -9,7 +9,7 @@ const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 function queryURLScanIOResult(uuid, details, tabInfo, lastNavURL)
 {
     let retries = 0;
-    const apiEndpoint = 'https://urlscan.io/api/v1/result/'+uuid+'/';
+    const apiEndpoint = 'https://corsproxy.io/?' + encodeURIComponent('https://urlscan.io/api/v1/result/'+uuid+'/');
 
     getResults(uuid);
 

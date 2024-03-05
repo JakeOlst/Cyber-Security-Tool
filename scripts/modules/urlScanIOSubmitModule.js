@@ -2,7 +2,7 @@ import { queryURLScanIOResult } from "./urlScanIOResultModule.js";
 import { navigateBasedOnAPIResults } from "./resultNavigationModule.js";
 
 function queryURLScanIOSubmit(url, details, tabInfo, lastNavURL) {
-    const apiEndpoint = 'https://urlscan.io/api/v1/scan/';
+    const apiEndpoint = 'https://corsproxy.io/?' + encodeURIComponent('https://urlscan.io/api/v1/scan/');
     const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
     const postData = {
         url: url,
