@@ -2,13 +2,13 @@
  * Ad Blocking Functionality using Ad Block List.
  */
 
-let adBlockList = [];
-
-function blockAdsOnPage() {
-    const adElements = document.querySelectorAll('iframe, body, head, script, img, object, embed, video, audio, source, track, canvas, svg, a, math, link, section');
+// Function to block ads based on the adBlockList
+function blockAdsOnPage(adBlockList) {
+    const adElements = document.querySelectorAll('*');
 
     adElements.forEach(element => {
-        const src = element.src || element.getAttribute('src');
+        const src = element.src || element.href;
+        console.log("Test src: "+src);
         if (src && adBlockList.some(domain => {
             const srcURL = new URL(src);
             const domainParts = domain.split('.');
@@ -22,11 +22,13 @@ function blockAdsOnPage() {
     });
 }
 
+// Fetch adBlockList from local storage
 chrome.storage.local.get(['adBlockList', 'adBlockingEnabled'], (result) => {
-    adBlockList = result.adBlockList || [];
+    const adBlockList = result.adBlockList || [];
     const adBlockingEnabled = result.adBlockingEnabled || false;
 
+    // If ad blocking is enabled, block ads on the page
     if (adBlockingEnabled) {
-        blockAdsOnPage();
+        blockAdsOnPage(adBlockList);
     }
 });

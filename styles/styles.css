@@ -243,6 +243,47 @@ body {
     text-align: center;
 }
 
+#returnToSearch, #nextPage, #navToEducation {
+    width: 20%;
+    height: 100px;
+    margin-left: 20%;
+    margin-top: 2.5%;
+    font-size: 1.4em;
+    border: 2px solid green;
+}
+
+#nextPage {
+    border: 2px solid red;
+}
+
+#continueToWebsite {
+    width: 25%;
+    height: 100px;
+    margin-top: 2.5%;
+    margin-left: 37.5%;
+    font-size: 1em;
+    border: 2px solid red;
+}
+
+.verificationButtons {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 5%;
+    font-size: 1.2em;
+}
+
+.verificationButtons label{
+    font-size: 1em;
+}
+
+#confirmationMessage {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+
 /*
     CSS for 'querying.html' page.
 */
@@ -545,10 +586,13 @@ body {
 .reportIssueMenu {
     width: 60%;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 5%;
+    font-size: 1.1em;
 }
 
-.reportIssueMenu p {
-    font-size: 18px;
-    text-align: center;
+#adBlockToggle {
+    width: 22.5px;
+    height: 22.5px;
+    margin-right: 10px;
+    margin-bottom: 15px;
 }

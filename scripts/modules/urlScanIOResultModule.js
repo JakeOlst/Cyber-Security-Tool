@@ -2,7 +2,7 @@ import { navigateBasedOnAPIResults } from "./resultNavigationModule.js";
 
 // The 'score' threshold for URLScan.IO API: -100 (legitimate) to 100 (illegitimate). Default is 30 to avoid false positives.
 // Lowering for testing.
-const urlScanMaxScore = 30;
+const urlScanMaxScore = -30;
 const maxRetries = 8;
 const apiKey = '9a05d09b-6284-41ae-97b0-0648173b00a4';
 

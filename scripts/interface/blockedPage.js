@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const returnToSearch = document.getElementById('returnToSearch');
     returnToSearch.addEventListener('click', function() {
         history.back();
+        history.back();
     });
 
     fetch('../../config/threatTypes.json')
